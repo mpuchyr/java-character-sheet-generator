@@ -10,24 +10,32 @@ public class CoCCharacter extends GenericCharacter {
     private int appearance;
     private int education;
     private int intelligence;
-    private int power; 
+    private int power;
+    private int luck;
+
+    private String occupation;
 
     public CoCCharacter(String name, Sex sex, int age) {
         super(name, sex, age);
-        this.strength = generateStat(99);
-        this.constitution = generateStat(99);
-        this.size = generateStat(99);
-        this.dexterity = generateStat(99);
-        this.appearance = generateStat(99);
-        this.education = generateStat(99);
-        this.intelligence = generateStat(99);
-        this.power = generateStat(99);
+        this.strength = generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5);
+        this.constitution = generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5);
+        this.size = generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5;
+        this.dexterity = generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5);
+        this.appearance = generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5);
+        this.education = generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5;
+        this.intelligence = generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5;
+        this.power = generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5;
+        this.luck = generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5);
     }
+
 
     @Override 
     protected String gameOfCharacter() {
         return this.GAME;
     }
+
+    
+
 
     @Override
     public String toString() {
@@ -39,7 +47,8 @@ public class CoCCharacter extends GenericCharacter {
             "APP: " + this.appearance + "\n" +
             "EDU: " + this.education + "\n" +
             "INT: " + this.intelligence + "\n" +
-            "POW: " + this.power + "\n";
+            "POW: " + this.power + "\n" +
+            "LUCK: " + this.luck + "\n";
         return temp;
     }
 

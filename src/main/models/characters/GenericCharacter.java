@@ -9,6 +9,13 @@ public abstract class GenericCharacter {
        MALE,
        FEMALE
    }
+
+   public enum Modifier {
+       ADD,
+       SUBTRACT,
+       DIVIDE,
+       MULTIPLY
+   }
    
    public GenericCharacter (String name, Sex sex, int age) {
     this.name = name;
@@ -54,36 +61,66 @@ public abstract class GenericCharacter {
         this.age = age;
     }
 
-    protected int generateStat(int range) {
-        return (int)(Math.random() * range) + 1;
+    // protected int generateStat(int range) {
+    //     return (int)(Math.random() * range) + 1;
+    // }
+
+    // protected int generateStatMin (int range, int min) {
+    //     int stat = min - 1;
+    //     while (stat < min) {
+    //         stat = (int)(Math.random() * range) + 1;
+    //     }
+    //     return stat;
+    // }
+
+    // protected int generateStatMax (int range, int max) {
+    //     int stat = max + 1;
+    //     while (stat > max) {
+    //         stat = (int)(Math.random() * range) + 1;
+    //     }
+    //     return stat;
+    // }
+
+    // protected int generatStatMinAndMax (int range, int min, int max) {
+    //     int stat = min - 1;
+    //     while ((stat > min) || (stat < max)) {
+    //         stat = (int)(Math.random() * range) + 1;
+    //     }
+    //     return stat;
+    // }
+
+    protected int generateStat(int die, int times) {
+        int temp = 0;
+        for (int i = 0; i < times; i++) {
+            temp += (int)(Math.random() * die) + 1;
+        }
+        return temp;
     }
 
-    protected int generateStatMin (int range, int min) {
-        int stat = min - 1;
-        while (stat < min) {
-            stat = (int)(Math.random() * range) + 1;
+    protected int generateStatWithModifier(int die, int times, Modifier modifierType, int modifier) {
+        int temp = generateStat(die, times);
+
+        switch (modifierType) {
+            case ADD:
+                temp += modifier;
+                break;
+            case SUBTRACT:
+                temp -= modifier;
+                break;
+            case MULTIPLY:
+                temp *= modifier;
+                break;
+            case DIVIDE:
+                temp /= modifier;
+                break;
         }
-        return stat;
+        return temp;
     }
 
-    protected int generateStatMax (int range, int max) {
-        int stat = max + 1;
-        while (stat > max) {
-            stat = (int)(Math.random() * range) + 1;
-        }
-        return stat;
-    }
-
-    protected int generatStatMinAndMax (int range, int min, int max) {
-        int stat = min - 1;
-        while ((stat > min) || (stat < max)) {
-            stat = (int)(Math.random() * range) + 1;
-        }
-        return stat;
-    }
 
 // Abstract Methods
     protected abstract String gameOfCharacter();
+
 
 
 // toString
