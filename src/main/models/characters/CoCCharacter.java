@@ -50,9 +50,7 @@ public class CoCCharacter extends GenericCharacter {
             int randomLine = (int)(Math.random() * lines) + 1;
             temp = Files.readAllLines(path).get(randomLine);
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (Error e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return temp;
