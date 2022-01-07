@@ -1,0 +1,28 @@
+Antiquarian
+Artist
+Athlete
+Author
+Clergy Member
+Criminal
+Dilettante
+Doctor of Medicine
+Drifter
+Engineer
+Entertainer
+Farmer
+Hacker
+Journalist
+Lawyer
+Librarian
+Military Officer
+Missionary
+Musician
+Paraspychologist
+Pilot
+Police Detective
+Police Officer
+Private Investigator
+Professor
+Soldier
+Tribe Member
+Zealot

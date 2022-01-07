@@ -1,9 +1,14 @@
 package src.main.models.characters;
 
+import java.util.HashMap;
+
 public abstract class GenericCharacter {
    private String name;
    private String sex;
    private int age;
+
+   public HashMap<String, Integer> characterStats;
+   public HashMap<String, String> characterInfo;
 
    public enum Sex {
        MALE,
@@ -18,16 +23,18 @@ public abstract class GenericCharacter {
    }
    
    public GenericCharacter (String name, Sex sex, int age) {
-    this.name = name;
-    switch (sex) {
-        case MALE:
-            this.sex = "male";
-            break;
-        case FEMALE:
-            this.sex = "female";
-            break;
-    }
-    this.age = age;
+        this.name = name;
+        switch (sex) {
+            case MALE:
+                this.sex = "male";
+                break;
+            case FEMALE:
+                this.sex = "female";
+                break;
+        }
+        this.age = age;
+        this.characterStats = new HashMap<String, Integer>();
+        this.characterInfo = new HashMap<String, String>();
    }
 
    public GenericCharacter (GenericCharacter source) {
