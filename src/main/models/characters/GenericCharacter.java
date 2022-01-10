@@ -21,17 +21,18 @@ public abstract class GenericCharacter {
        DIVIDE,
        MULTIPLY
    }
+
+   public GenericCharacter() {
+        this.age = generateAge();
+        this.sex = sexAsString(generateSex());
+        this.name = generateName();
+        this.characterStats = new HashMap<String, Integer>();
+        this.characterInfo = new HashMap<String, String>();
+   }
    
    public GenericCharacter (String name, Sex sex, int age) {
         this.name = name;
-        switch (sex) {
-            case MALE:
-                this.sex = "male";
-                break;
-            case FEMALE:
-                this.sex = "female";
-                break;
-        }
+        this.sex = sexAsString(sex);
         this.age = age;
         this.characterStats = new HashMap<String, Integer>();
         this.characterInfo = new HashMap<String, String>();
@@ -68,33 +69,45 @@ public abstract class GenericCharacter {
         this.age = age;
     }
 
-    // protected int generateStat(int range) {
-    //     return (int)(Math.random() * range) + 1;
-    // }
+    protected Sex generateSex() {
+        int randomNum = (int)(Math.random() * 2) + 1;
+        if (randomNum == 1) {
+            return Sex.MALE;
+        } else {
+            return Sex.FEMALE;
+        }
+    }
 
-    // protected int generateStatMin (int range, int min) {
-    //     int stat = min - 1;
-    //     while (stat < min) {
-    //         stat = (int)(Math.random() * range) + 1;
-    //     }
-    //     return stat;
-    // }
+    protected String sexAsString(Sex sex) {
+        String temp = "";
+        switch(sex) {
+            case MALE:
+                temp = "male";
+                break;
+            case FEMALE: 
+                temp = "female";
+                break;
+        }
+        return temp;
+    }
 
-    // protected int generateStatMax (int range, int max) {
-    //     int stat = max + 1;
-    //     while (stat > max) {
-    //         stat = (int)(Math.random() * range) + 1;
-    //     }
-    //     return stat;
-    // }
+    protected String generateName() {
+        String name = "";
+        if (this.sex.equals("male")) {
+            name = "John";
+        } else {
+            name = "Jenny";
+        }
+        return name;
+     }
 
-    // protected int generatStatMinAndMax (int range, int min, int max) {
-    //     int stat = min - 1;
-    //     while ((stat > min) || (stat < max)) {
-    //         stat = (int)(Math.random() * range) + 1;
-    //     }
-    //     return stat;
-    // }
+    protected int generateAge() {
+        int age = 0;
+        while (age < 15 || age > 75) {
+            age = (int)(Math.random() * 75) + 1;
+        }
+        return age;
+    }
 
     protected int generateStat(int die, int times) {
         int temp = 0;
@@ -127,6 +140,8 @@ public abstract class GenericCharacter {
 
 // Abstract Methods
     protected abstract String gameOfCharacter();
+
+    protected abstract void generateAllStats();
 
 
 

@@ -9,18 +9,17 @@ public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
     private final String OCCUPATION_FILE = "src/main/models/data/CoCoccupations.txt";
 
+
+    public CoCCharacter() {
+        super();
+        generateAllStats();
+        this.characterInfo.put("Occupation", generateOccupation());
+    }
+
     public CoCCharacter(String name, Sex sex, int age) {
         super(name, sex, age);
+        generateAllStats();
 
-        this.characterStats.put("STR", generateStatWithModifier(6,3, Modifier.MULTIPLY, 5));
-        this.characterStats.put("CON", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
-        this.characterStats.put("SIZ", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
-        this.characterStats.put("DEX", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
-        this.characterStats.put("APP", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
-        this.characterStats.put("EDU", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
-        this.characterStats.put("INT", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
-        this.characterStats.put("POW", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
-        this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
 
         this.characterInfo.put("Occupation", generateOccupation());
     }
@@ -28,6 +27,13 @@ public class CoCCharacter extends GenericCharacter {
     public CoCCharacter(String name, Sex sex, int age, String occupation) {
         super(name, sex, age);
 
+        generateAllStats();
+
+        this.characterInfo.put("Occupation", occupation);
+    }
+
+    @Override
+    protected void generateAllStats() {
         this.characterStats.put("STR", generateStatWithModifier(6,3, Modifier.MULTIPLY, 5));
         this.characterStats.put("CON", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
         this.characterStats.put("SIZ", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
@@ -37,8 +43,6 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("INT", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("POW", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
-
-        this.characterInfo.put("Occupation", occupation);
     }
 
     private String generateOccupation() {
