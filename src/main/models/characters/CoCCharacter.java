@@ -10,33 +10,26 @@ public class CoCCharacter extends GenericCharacter {
 
     public CoCCharacter() {
         super();
-        generateAllStats();
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
     public CoCCharacter(Sex sex) {
         super(sex);
-        generateAllStats();
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
     public CoCCharacter(String name, Sex sex) {
         super(name, sex);
-        generateAllStats();
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
     public CoCCharacter(String name, Sex sex, int age) {
         super(name, sex, age);
-        generateAllStats();
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
     public CoCCharacter(String name, Sex sex, int age, String occupation) {
         super(name, sex, age);
-
-        generateAllStats();
-
         this.characterInfo.put("Occupation", occupation);
     }
 

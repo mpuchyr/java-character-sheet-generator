@@ -31,6 +31,7 @@ public abstract class GenericCharacter {
         this.name = generateName(this.sex);
         this.characterStats = new HashMap<String, Integer>();
         this.characterInfo = new HashMap<String, String>();
+        generateAllStats();
    }
 
    public GenericCharacter(Sex sex) {
@@ -39,6 +40,7 @@ public abstract class GenericCharacter {
        this.name = generateName(this.sex);
        this.characterStats = new HashMap<String, Integer>();
        this.characterInfo = new HashMap<String, String>();
+       generateAllStats();
    }
 
    public GenericCharacter(String name, Sex sex) {
@@ -47,6 +49,7 @@ public abstract class GenericCharacter {
        this.age = generateAge();
        this.characterStats = new HashMap<String, Integer>();
        this.characterInfo = new HashMap<String, String>();
+       generateAllStats();
    }
    
    public GenericCharacter (String name, Sex sex, int age) {
@@ -55,6 +58,7 @@ public abstract class GenericCharacter {
         this.age = age;
         this.characterStats = new HashMap<String, Integer>();
         this.characterInfo = new HashMap<String, String>();
+        generateAllStats();
    }
 
    public GenericCharacter (GenericCharacter source) {
