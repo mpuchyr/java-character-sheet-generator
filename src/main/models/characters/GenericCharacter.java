@@ -1,5 +1,8 @@
 package src.main.models.characters;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 public abstract class GenericCharacter {
@@ -25,7 +28,7 @@ public abstract class GenericCharacter {
    public GenericCharacter() {
         this.age = generateAge();
         this.sex = sexAsString(generateSex());
-        this.name = generateName();
+        this.name = generateName(this.sex);
         this.characterStats = new HashMap<String, Integer>();
         this.characterInfo = new HashMap<String, String>();
    }
@@ -33,7 +36,15 @@ public abstract class GenericCharacter {
    public GenericCharacter(Sex sex) {
        this.sex = sexAsString(sex);
        this.age = generateAge();
-       this.name = generateName();
+       this.name = generateName(this.sex);
+       this.characterStats = new HashMap<String, Integer>();
+       this.characterInfo = new HashMap<String, String>();
+   }
+
+   public GenericCharacter(String name, Sex sex) {
+       this.name = name;
+       this.sex = sexAsString(sex);
+       this.age = generateAge();
        this.characterStats = new HashMap<String, Integer>();
        this.characterInfo = new HashMap<String, String>();
    }
@@ -77,6 +88,8 @@ public abstract class GenericCharacter {
         this.age = age;
     }
 
+
+// Characteristic Generators
     protected Sex generateSex() {
         int randomNum = (int)(Math.random() * 2) + 1;
         if (randomNum == 1) {
@@ -99,15 +112,17 @@ public abstract class GenericCharacter {
         return temp;
     }
 
-    protected String generateName() {
-        String name = "";
-        if (this.sex.equals("male")) {
-            name = "John";
-        } else {
-            name = "Jenny";
-        }
-        return name;
-     }
+    // protected String generateName() {
+    //     String name = "";
+    //     if (this.sex.equals("male")) {
+    //         name = "John";
+    //     } else {
+    //         name = "Jenny";
+    //     }
+    //     return name;
+    //  }
+
+
 
     protected int generateAge() {
         int age = 0;
@@ -145,11 +160,28 @@ public abstract class GenericCharacter {
         return temp;
     }
 
+    protected String readRandomLineFromFile(String filename) {
+        String temp = "N/A";
+        Path path = Paths.get(filename);
+        long lines = 0;
+        try {
+            lines = Files.lines(path).count();
+            int randomLine = (int)(Math.random() * lines) + 1;
+            temp = Files.readAllLines(path).get(randomLine);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return temp;
+    }
 
 // Abstract Methods
     protected abstract String gameOfCharacter();
 
+    protected abstract String generateName(String sex);
+
     protected abstract void generateAllStats();
+
 
 
 

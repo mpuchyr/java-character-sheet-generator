@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 
 public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
+    private final String MALE_NAME_FILE = "src/main/models/data/CoCMaleNames.txt";
+    private final String FEMALE_NAME_FILE = "src/main/models/data/CoCFemaleNames.txt";
     private final String OCCUPATION_FILE = "src/main/models/data/CoCoccupations.txt";
 
 
@@ -18,6 +20,12 @@ public class CoCCharacter extends GenericCharacter {
 
     public CoCCharacter(Sex sex) {
         super(sex);
+        generateAllStats();
+        this.characterInfo.put("Occupation", generateOccupation());
+    }
+
+    public CoCCharacter(String name, Sex sex) {
+        super(name, sex);
         generateAllStats();
         this.characterInfo.put("Occupation", generateOccupation());
     }
@@ -50,24 +58,23 @@ public class CoCCharacter extends GenericCharacter {
     }
 
     private String generateOccupation() {
-        String temp = "N/A";
-        Path path = Paths.get(OCCUPATION_FILE);
-        long lines = 0;
-        try {
-            lines = Files.lines(path).count();
-            int randomLine = (int)(Math.random() * lines) + 1;
-            temp = Files.readAllLines(path).get(randomLine);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return temp;
+        return readRandomLineFromFile(OCCUPATION_FILE);
     }
-
 
     @Override 
     protected String gameOfCharacter() {
         return this.GAME;
+    }
+
+    @Override
+    protected String generateName(String sex) {
+        String temp = "N/A";
+        if (sex.equals("male")) {
+            temp = readRandomLineFromFile(MALE_NAME_FILE);
+        } else {
+            temp = readRandomLineFromFile(FEMALE_NAME_FILE);
+        }
+        return temp;
     }
 
 
