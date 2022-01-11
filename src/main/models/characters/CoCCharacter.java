@@ -1,14 +1,10 @@
 package src.main.models.characters;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
     private final String MALE_NAME_FILE = "src/main/models/data/CoCMaleNames.txt";
     private final String FEMALE_NAME_FILE = "src/main/models/data/CoCFemaleNames.txt";
+    private final String LAST_NAME_FILE = "src/main/models/data/CoCLastNames.txt";
     private final String OCCUPATION_FILE = "src/main/models/data/CoCoccupations.txt";
 
 
@@ -74,6 +70,7 @@ public class CoCCharacter extends GenericCharacter {
         } else {
             temp = readRandomLineFromFile(FEMALE_NAME_FILE);
         }
+        temp += " " + readRandomLineFromFile(LAST_NAME_FILE);
         return temp;
     }
 
