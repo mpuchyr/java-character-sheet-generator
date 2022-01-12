@@ -4,15 +4,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public abstract class GenericCharacter {
    private String name;
    private String sex;
    private int age;
 
-   public HashMap<String, Integer> characterStats;
-   public HashMap<String, String> characterInfo;
-   public HashMap<String, Integer> characterSkills;
+   protected HashMap<String, Integer> characterStats;
+   protected HashMap<String, String> characterInfo;
+   protected LinkedHashMap<String, Integer> characterSkills;
 
    public enum Sex {
        MALE,
@@ -31,7 +32,8 @@ public abstract class GenericCharacter {
         this.sex = sexAsString(generateSex());
         this.name = generateName(this.sex);
         this.initializeHashMaps();
-        generateAllStats();
+        this.generateAllStats();
+        this.generateAllSkills();
    }
 
    public GenericCharacter(Sex sex) {
@@ -39,7 +41,8 @@ public abstract class GenericCharacter {
         this.age = generateAge();
         this.name = generateName(this.sex);
         this.initializeHashMaps();
-        generateAllStats();
+        this.generateAllStats();
+        this.generateAllSkills();
    }
 
    public GenericCharacter(String name, Sex sex) {
@@ -48,6 +51,7 @@ public abstract class GenericCharacter {
        this.age = generateAge();
        this.initializeHashMaps();
        this.generateAllStats();
+       this.generateAllSkills();
    }
    
    public GenericCharacter (String name, Sex sex, int age) {
@@ -56,6 +60,7 @@ public abstract class GenericCharacter {
         this.age = age;
         this.initializeHashMaps();
         this.generateAllStats();
+        this.generateAllSkills();
    }
 
    public GenericCharacter (GenericCharacter source) {
@@ -70,7 +75,7 @@ public abstract class GenericCharacter {
    private void initializeHashMaps() {
         this.characterStats = new HashMap<String, Integer>();
         this.characterInfo = new HashMap<String, String>();
-        this.characterSkills = new HashMap<String, Integer>();
+        this.characterSkills = new LinkedHashMap<String, Integer>();
    }
 
 // Getters and Setters
@@ -180,7 +185,7 @@ public abstract class GenericCharacter {
 
     protected abstract void generateAllStats();
 
-
+    protected abstract void generateAllSkills();
 
 
 // toString

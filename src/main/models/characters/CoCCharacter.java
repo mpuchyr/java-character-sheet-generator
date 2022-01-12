@@ -6,11 +6,24 @@ public class CoCCharacter extends GenericCharacter {
     private final String FEMALE_NAME_FILE = "src/main/models/data/CoCFemaleNames.txt";
     private final String LAST_NAME_FILE = "src/main/models/data/CoCLastNames.txt";
     private final String OCCUPATION_FILE = "src/main/models/data/CoCoccupations.txt";
+    private final String[] BASIC_SKILLS = {
+        "Accounting", "Anthropology", "Appraise", "Archaeology", "Art/Craft", "Charm", "Climb", "Credit Rating", "Cthulhu Mythos",
+        "Disguise", "Dodge", "Drive Auto", "Elec. Repair", "Fast Talk", "Fighting (Brawl)", "Firearms (Handgun)", "Firearms (Rifle/Shotgun)",
+        "First Aid", "History", "Intimidate", "Jump", "Language (Other)", "Language (Own)", "Law", "Library Use", "Listen", "Locksmith",
+        "Mech. Repair", "Medicine", "Natural World", "Navigate", "Occult", "Op. Hv. Machine", "Persuade", "Pilot", "Psychology", "Psychoanalysis",
+        "Ride", "Science", "Sleight of Hand", "Spot Hidden", "Stealth", "Survival", "Swim", "Throw", "Track"
+    };
+    private final Integer[] BASIC_SKILLS_STATS = {
+        5, 1, 5, 1, 5, 15, 20, 0, 0, 5, 0, 20, 10, 5, 25, 20, 25, 30, 5, 15, 
+        20, 1, 0, 5, 20, 20, 1, 10, 1, 10, 10, 5, 1, 10, 1, 10, 1, 5, 1, 10, 
+        25, 20, 10, 20, 20, 10
+    };
 
 
     public CoCCharacter() {
         super();
         this.characterInfo.put("Occupation", generateOccupation());
+        generateAllSkills();
     }
 
     public CoCCharacter(Sex sex) {
@@ -44,6 +57,13 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("INT", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("POW", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
+    }
+
+    @Override
+    protected void generateAllSkills() {
+        for (int i = 0; i < BASIC_SKILLS.length; i++) {
+            this.characterSkills.put(BASIC_SKILLS[i], BASIC_SKILLS_STATS[i]);
+        }
     }
 
     private String generateOccupation() {
