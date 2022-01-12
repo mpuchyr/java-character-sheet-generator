@@ -12,6 +12,7 @@ public abstract class GenericCharacter {
 
    public HashMap<String, Integer> characterStats;
    public HashMap<String, String> characterInfo;
+   public HashMap<String, Integer> characterSkills;
 
    public enum Sex {
        MALE,
@@ -31,6 +32,7 @@ public abstract class GenericCharacter {
         this.name = generateName(this.sex);
         this.characterStats = new HashMap<String, Integer>();
         this.characterInfo = new HashMap<String, String>();
+        this.characterSkills = new HashMap<String, Integer>();
         generateAllStats();
    }
 
@@ -40,6 +42,7 @@ public abstract class GenericCharacter {
        this.name = generateName(this.sex);
        this.characterStats = new HashMap<String, Integer>();
        this.characterInfo = new HashMap<String, String>();
+       this.characterSkills = new HashMap<String, Integer>();
        generateAllStats();
    }
 
@@ -49,6 +52,7 @@ public abstract class GenericCharacter {
        this.age = generateAge();
        this.characterStats = new HashMap<String, Integer>();
        this.characterInfo = new HashMap<String, String>();
+       this.characterSkills = new HashMap<String, Integer>();
        generateAllStats();
    }
    
@@ -58,6 +62,7 @@ public abstract class GenericCharacter {
         this.age = age;
         this.characterStats = new HashMap<String, Integer>();
         this.characterInfo = new HashMap<String, String>();
+        this.characterSkills = new HashMap<String, Integer>();
         generateAllStats();
    }
 
@@ -65,6 +70,9 @@ public abstract class GenericCharacter {
        this.name = source.name;
        this.sex = source.sex;
        this.age = source.age;
+       this.characterStats = source.characterStats;
+       this.characterInfo = source.characterInfo;
+       this.characterSkills = source.characterSkills;
    }
 
 // Getters and Setters
@@ -115,18 +123,6 @@ public abstract class GenericCharacter {
         }
         return temp;
     }
-
-    // protected String generateName() {
-    //     String name = "";
-    //     if (this.sex.equals("male")) {
-    //         name = "John";
-    //     } else {
-    //         name = "Jenny";
-    //     }
-    //     return name;
-    //  }
-
-
 
     protected int generateAge() {
         int age = 0;
