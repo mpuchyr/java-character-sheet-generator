@@ -30,40 +30,32 @@ public abstract class GenericCharacter {
         this.age = generateAge();
         this.sex = sexAsString(generateSex());
         this.name = generateName(this.sex);
-        this.characterStats = new HashMap<String, Integer>();
-        this.characterInfo = new HashMap<String, String>();
-        this.characterSkills = new HashMap<String, Integer>();
+        this.initializeHashMaps();
         generateAllStats();
    }
 
    public GenericCharacter(Sex sex) {
-       this.sex = sexAsString(sex);
-       this.age = generateAge();
-       this.name = generateName(this.sex);
-       this.characterStats = new HashMap<String, Integer>();
-       this.characterInfo = new HashMap<String, String>();
-       this.characterSkills = new HashMap<String, Integer>();
-       generateAllStats();
+        this.sex = sexAsString(sex);
+        this.age = generateAge();
+        this.name = generateName(this.sex);
+        this.initializeHashMaps();
+        generateAllStats();
    }
 
    public GenericCharacter(String name, Sex sex) {
        this.name = name;
        this.sex = sexAsString(sex);
        this.age = generateAge();
-       this.characterStats = new HashMap<String, Integer>();
-       this.characterInfo = new HashMap<String, String>();
-       this.characterSkills = new HashMap<String, Integer>();
-       generateAllStats();
+       this.initializeHashMaps();
+       this.generateAllStats();
    }
    
    public GenericCharacter (String name, Sex sex, int age) {
         this.name = name;
         this.sex = sexAsString(sex);
         this.age = age;
-        this.characterStats = new HashMap<String, Integer>();
-        this.characterInfo = new HashMap<String, String>();
-        this.characterSkills = new HashMap<String, Integer>();
-        generateAllStats();
+        this.initializeHashMaps();
+        this.generateAllStats();
    }
 
    public GenericCharacter (GenericCharacter source) {
@@ -73,6 +65,12 @@ public abstract class GenericCharacter {
        this.characterStats = source.characterStats;
        this.characterInfo = source.characterInfo;
        this.characterSkills = source.characterSkills;
+   }
+
+   private void initializeHashMaps() {
+        this.characterStats = new HashMap<String, Integer>();
+        this.characterInfo = new HashMap<String, String>();
+        this.characterSkills = new HashMap<String, Integer>();
    }
 
 // Getters and Setters
