@@ -1,29 +1,21 @@
 package src.main.models.characters;
 
+import java.io.FileInputStream;
+import java.util.Map;
+import java.util.Scanner;
+
 public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
     private final String MALE_NAME_FILE = "src/main/models/data/CoCMaleNames.txt";
     private final String FEMALE_NAME_FILE = "src/main/models/data/CoCFemaleNames.txt";
     private final String LAST_NAME_FILE = "src/main/models/data/CoCLastNames.txt";
     private final String OCCUPATION_FILE = "src/main/models/data/CoCoccupations.txt";
-    private final String[] BASIC_SKILLS = {
-        "Accounting", "Anthropology", "Appraise", "Archaeology", "Art/Craft", "Charm", "Climb", "Credit Rating", "Cthulhu Mythos",
-        "Disguise", "Dodge", "Drive Auto", "Elec. Repair", "Fast Talk", "Fighting (Brawl)", "Firearms (Handgun)", "Firearms (Rifle/Shotgun)",
-        "First Aid", "History", "Intimidate", "Jump", "Language (Other)", "Language (Own)", "Law", "Library Use", "Listen", "Locksmith",
-        "Mech. Repair", "Medicine", "Natural World", "Navigate", "Occult", "Op. Hv. Machine", "Persuade", "Pilot", "Psychology", "Psychoanalysis",
-        "Ride", "Science", "Sleight of Hand", "Spot Hidden", "Stealth", "Survival", "Swim", "Throw", "Track"
-    };
-    private final Integer[] BASIC_SKILLS_STATS = {
-        5, 1, 5, 1, 5, 15, 20, 0, 0, 5, 0, 20, 10, 5, 25, 20, 25, 30, 5, 15, 
-        20, 1, 0, 5, 20, 20, 1, 10, 1, 10, 10, 5, 1, 10, 1, 10, 1, 5, 1, 10, 
-        25, 20, 10, 20, 20, 10
-    };
+    private final String SKILLS_FILE = "src/main/models/data/CoCAllSkills.txt";
 
 
     public CoCCharacter() {
         super();
         this.characterInfo.put("Occupation", generateOccupation());
-        generateAllSkills();
     }
 
     public CoCCharacter(Sex sex) {
@@ -61,9 +53,21 @@ public class CoCCharacter extends GenericCharacter {
 
     @Override
     protected void generateAllSkills() {
-        for (int i = 0; i < BASIC_SKILLS.length; i++) {
-            this.characterSkills.put(BASIC_SKILLS[i], BASIC_SKILLS_STATS[i]);
+        try {
+            FileInputStream fis = new FileInputStream(SKILLS_FILE);
+            Scanner scan = new Scanner(fis);
+            while(scan.hasNextLine()) {
+                String[] line = scan.nextLine().split(",");
+                System.out.println(line[0] + " " + line[1]);
+                this.characterSkills.put(line[0], Integer.parseInt(line[1]));
+            }
+            characterSkills.put("Dodge", this.characterStats.get("DEX") / 2);
+            characterSkills.put("Language (Own)", this.characterStats.get("EDU"));
+            scan.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+        
     }
 
     private String generateOccupation() {
@@ -87,6 +91,15 @@ public class CoCCharacter extends GenericCharacter {
         return temp;
     }
 
+    @Override
+    protected String convertCharacterSkillsToString() {
+        String temp = "";
+        for (String key : characterSkills.keySet()) {
+            temp += key + " " + characterSkills.get(key) + "\n";
+        }
+        return temp;
+    }
+
 
     @Override
     public String toString() {
@@ -100,7 +113,8 @@ public class CoCCharacter extends GenericCharacter {
             "INT: " + this.characterStats.get("INT") + "\n" +
             "POW: " + this.characterStats.get("POW") + "\n" +
             "LUCK: " + this.characterStats.get("LUCK") + "\n" +
-            "Occupation: " + this.characterInfo.get("Occupation");
+            "Occupation: " + this.characterInfo.get("Occupation") + "\n" +
+            convertCharacterSkillsToString();
         return temp;
     }
 

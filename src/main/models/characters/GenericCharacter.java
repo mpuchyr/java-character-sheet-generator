@@ -187,6 +187,8 @@ public abstract class GenericCharacter {
 
     protected abstract void generateAllSkills();
 
+    protected abstract String convertCharacterSkillsToString();
+
 
 // toString
     public String toString() {
