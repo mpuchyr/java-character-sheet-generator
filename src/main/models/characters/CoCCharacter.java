@@ -53,6 +53,7 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("POW", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
         this.ageModifier(this.getAge());
+        this.generateHitPoints();
     }
 
     @Override
@@ -69,8 +70,13 @@ public class CoCCharacter extends GenericCharacter {
             scan.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-        
+        }  
+    }
+
+    @Override
+    protected void generateHitPoints() {
+        int hp = (this.characterStats.get("CON") + this.characterStats.get("SIZ")) / 10;
+        this.characterStats.put("HP", hp);
     }
 
     private void ageModifier(int age) {

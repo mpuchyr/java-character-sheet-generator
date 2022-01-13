@@ -195,6 +195,8 @@ public abstract class GenericCharacter {
 
     protected abstract void generateAllSkills();
 
+    protected abstract void generateHitPoints();
+
 
 
 // toString
