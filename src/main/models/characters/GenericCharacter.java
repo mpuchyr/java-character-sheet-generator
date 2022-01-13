@@ -129,7 +129,7 @@ public abstract class GenericCharacter {
 
     protected int generateAge() {
         int age = 0;
-        while (age < 15 || age > 75) {
+        while (age < 15 || age > 90) {
             age = (int)(Math.random() * 75) + 1;
         }
         return age;
@@ -178,7 +178,7 @@ public abstract class GenericCharacter {
         return temp;
     }
 
-    protected String convertCharactersticsToString(LinkedHashMap<String, Integer> info) {
+    protected String convertCharactersticsToString(HashMap<String, Integer> info) {
         String temp = "";
         for (String key : info.keySet()) {
             temp += key + " " + info.get(key) + "\n";
@@ -205,6 +205,7 @@ public abstract class GenericCharacter {
             + "Sex: " + this.sex + "\n"
             + "\t -- Character Stats -- \n"
             + convertCharactersticsToString(this.characterStats)
+            + "\t -- Character Skills -- \n"
             + convertCharactersticsToString(this.characterSkills);
     }
 }

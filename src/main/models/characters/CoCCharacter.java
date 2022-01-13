@@ -1,8 +1,11 @@
 package src.main.models.characters;
 
 import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.swing.text.html.parser.ContentModel;
 
 public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
@@ -61,12 +64,67 @@ public class CoCCharacter extends GenericCharacter {
                 this.characterSkills.put(line[0], Integer.parseInt(line[1]));
             }
             characterSkills.put("Dodge", this.characterStats.get("DEX") / 2);
+            this.ageModifier(this.getAge());
             characterSkills.put("Language (Own)", this.characterStats.get("EDU"));
             scan.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         
+    }
+
+    private void ageModifier(int age) {
+        if (age >= 15 && age <= 19) {
+            int total = 5;
+            int strMod = (int)(Math.random() * total + 1);
+            int sizMod = total - strMod;
+            this.characterStats.put("STR", this.characterStats.get("STR") - strMod);
+            this.characterStats.put("SIZ", this.characterStats.get("SIZ") - sizMod);
+            this.characterStats.put("EDU", this.characterStats.get("EDU") - 5);
+        } else if (age >= 20 && age <= 39) {
+            eduIncrease(1);
+        } else if (age >= 40 && age <= 49) {
+            eduIncrease(2);
+            statReduction(5, 5);
+        } else if (age >= 50 && age <= 59) {
+            eduIncrease(3);
+            statReduction(10, 10);
+        } else if (age >= 60 && age <= 69) {
+            eduIncrease(4);
+            statReduction(20, 15);
+        } else if (age >= 70 && age <= 79) {
+            eduIncrease(4);
+            statReduction(40, 20);
+        } else {
+            eduIncrease(4);
+            statReduction(80, 25);
+        }
+    }
+
+    private void eduIncrease(int numOfChecks) {
+        for (int i = 0; i < numOfChecks; i++) {
+            boolean eduCheckPass = this.statCheck(this.characterStats, "EDU");
+            if (!eduCheckPass) {
+                int eduMod = (int)(Math.random() * 10);
+                this.characterStats.put("EDU", this.characterStats.get("EDU") + eduMod);
+            }
+        }
+    }
+
+    private void statReduction(int statReduction, int appReduction) {
+        this.characterStats.put("APP", this.characterStats.get("APP") - appReduction);
+        int strMod = (int)(Math.random() * (statReduction + 1)); 
+        int conMod = (int)(Math.random() * (statReduction - strMod + 1));
+        int dexMod = statReduction - (conMod + strMod);
+        this.characterStats.put("STR", this.characterStats.get("STR") - strMod);
+        this.characterStats.put("CON", this.characterStats.get("CON") - conMod);
+        this.characterStats.put("DEX", this.characterStats.get("DEX") - dexMod);
+    }
+
+    private boolean statCheck(HashMap<String, Integer> stat, String statToCheck) {
+        int roll = (int)(Math.random() * 100) + 1;
+        boolean pass = roll <= stat.get(statToCheck);
+        return pass;
     }
 
     private String generateOccupation() {
