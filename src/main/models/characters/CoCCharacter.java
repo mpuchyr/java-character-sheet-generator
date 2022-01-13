@@ -52,6 +52,7 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("INT", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("POW", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
+        this.ageModifier(this.getAge());
     }
 
     @Override
@@ -64,7 +65,6 @@ public class CoCCharacter extends GenericCharacter {
                 this.characterSkills.put(line[0], Integer.parseInt(line[1]));
             }
             characterSkills.put("Dodge", this.characterStats.get("DEX") / 2);
-            this.ageModifier(this.getAge());
             characterSkills.put("Language (Own)", this.characterStats.get("EDU"));
             scan.close();
         } catch (Exception e) {
