@@ -11,7 +11,7 @@ public abstract class GenericCharacter {
    private String sex;
    private int age;
 
-   protected HashMap<String, Integer> characterStats;
+   protected LinkedHashMap<String, Integer> characterStats;
    protected HashMap<String, String> characterInfo;
    protected LinkedHashMap<String, Integer> characterSkills;
 
@@ -73,7 +73,7 @@ public abstract class GenericCharacter {
    }
 
    private void initializeHashMaps() {
-        this.characterStats = new HashMap<String, Integer>();
+        this.characterStats = new LinkedHashMap<String, Integer>();
         this.characterInfo = new HashMap<String, String>();
         this.characterSkills = new LinkedHashMap<String, Integer>();
    }
@@ -178,6 +178,14 @@ public abstract class GenericCharacter {
         return temp;
     }
 
+    protected String convertCharactersticsToString(LinkedHashMap<String, Integer> info) {
+        String temp = "";
+        for (String key : info.keySet()) {
+            temp += key + " " + info.get(key) + "\n";
+        }
+        return temp;
+    }
+
 // Abstract Methods
     protected abstract String gameOfCharacter();
 
@@ -187,7 +195,6 @@ public abstract class GenericCharacter {
 
     protected abstract void generateAllSkills();
 
-    protected abstract String convertCharacterSkillsToString();
 
 
 // toString
@@ -196,6 +203,8 @@ public abstract class GenericCharacter {
             + "Name: " + this.name + "\n"
             + "Age: " + this.age + "\n"
             + "Sex: " + this.sex + "\n"
-            + "\t -- Character Stats -- \n";
+            + "\t -- Character Stats -- \n"
+            + convertCharactersticsToString(this.characterStats)
+            + convertCharactersticsToString(this.characterSkills);
     }
 }

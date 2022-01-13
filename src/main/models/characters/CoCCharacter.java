@@ -58,7 +58,6 @@ public class CoCCharacter extends GenericCharacter {
             Scanner scan = new Scanner(fis);
             while(scan.hasNextLine()) {
                 String[] line = scan.nextLine().split(",");
-                System.out.println(line[0] + " " + line[1]);
                 this.characterSkills.put(line[0], Integer.parseInt(line[1]));
             }
             characterSkills.put("Dodge", this.characterStats.get("DEX") / 2);
@@ -91,32 +90,31 @@ public class CoCCharacter extends GenericCharacter {
         return temp;
     }
 
-    @Override
-    protected String convertCharacterSkillsToString() {
-        String temp = "";
-        for (String key : characterSkills.keySet()) {
-            temp += key + " " + characterSkills.get(key) + "\n";
-        }
-        return temp;
-    }
+    // @Override
+    // protected String convertCharacterSkillsToString() {
+    //     String temp = "";
+    //     for (String key : characterSkills.keySet()) {
+    //         temp += key + " " + characterSkills.get(key) + "\n";
+    //     }
+    //     return temp;
+    // }
 
 
-    @Override
-    public String toString() {
-        String temp = super.toString();
-        temp += "STR: " + this.characterStats.get("STR") + "\n" +
-            "CON: " + this.characterStats.get("STR") + "\n" +
-            "SIZ: " + this.characterStats.get("SIZ") + "\n" +
-            "DEX: " + this.characterStats.get("DEX") + "\n" +
-            "APP: " + this.characterStats.get("APP") + "\n" +
-            "EDU: " + this.characterStats.get("EDU") + "\n" +
-            "INT: " + this.characterStats.get("INT") + "\n" +
-            "POW: " + this.characterStats.get("POW") + "\n" +
-            "LUCK: " + this.characterStats.get("LUCK") + "\n" +
-            "Occupation: " + this.characterInfo.get("Occupation") + "\n" +
-            convertCharacterSkillsToString();
-        return temp;
-    }
+    // @Override
+    // public String toString() {
+    //     String temp = super.toString();
+    //     temp += "STR: " + this.characterStats.get("STR") + "\n";
+    //         // "CON: " + this.characterStats.get("STR") + "\n" +
+    //         // "SIZ: " + this.characterStats.get("SIZ") + "\n" +
+    //         // "DEX: " + this.characterStats.get("DEX") + "\n" +
+    //         // "APP: " + this.characterStats.get("APP") + "\n" +
+    //         // "EDU: " + this.characterStats.get("EDU") + "\n" +
+    //         // "INT: " + this.characterStats.get("INT") + "\n" +
+    //         // "POW: " + this.characterStats.get("POW") + "\n" +
+    //         // "LUCK: " + this.characterStats.get("LUCK") + "\n" +
+    //         // "Occupation: " + this.characterInfo.get("Occupation") + "\n";
+    //     return temp;
+    // }
 
 
 }
