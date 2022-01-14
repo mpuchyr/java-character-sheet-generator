@@ -21,6 +21,11 @@ public class CoCCharacter extends GenericCharacter {
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
+    public CoCCharacter(int age) {
+        super(age);
+        this.characterInfo.put("Occupation", generateOccupation());
+    }
+
     public CoCCharacter(Sex sex) {
         super(sex);
         this.characterInfo.put("Occupation", generateOccupation());
@@ -28,6 +33,11 @@ public class CoCCharacter extends GenericCharacter {
 
     public CoCCharacter(String name, Sex sex) {
         super(name, sex);
+        this.characterInfo.put("Occupation", generateOccupation());
+    }
+
+    public CoCCharacter(int age, Sex sex) {
+        super(age, sex);
         this.characterInfo.put("Occupation", generateOccupation());
     }
 

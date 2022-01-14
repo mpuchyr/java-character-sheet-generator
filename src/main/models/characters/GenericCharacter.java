@@ -36,6 +36,15 @@ public abstract class GenericCharacter {
         this.generateAllSkills();
    }
 
+   public GenericCharacter(int age) {
+        this.age = age;
+        this.sex = sexAsString(generateSex());
+        this.name = generateName(this.sex);
+        this.initializeHashMaps();
+        this.generateAllStats();
+        this.generateAllSkills();
+   }
+
    public GenericCharacter(Sex sex) {
         this.sex = sexAsString(sex);
         this.age = generateAge();
@@ -43,6 +52,15 @@ public abstract class GenericCharacter {
         this.initializeHashMaps();
         this.generateAllStats();
         this.generateAllSkills();
+   }
+
+   public GenericCharacter(int age, Sex sex) {
+       this.sex = sexAsString(sex);
+       this.age = age;
+       this.name = generateName(this.sex);
+       this.initializeHashMaps();
+       this.generateAllStats();
+       this.generateAllSkills();
    }
 
    public GenericCharacter(String name, Sex sex) {
