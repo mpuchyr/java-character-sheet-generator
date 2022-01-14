@@ -55,6 +55,7 @@ public class CoCCharacter extends GenericCharacter {
         this.ageModifier(this.getAge());
         this.generateHitPoints();
         this.generateDamageBonusAndBuild();
+        generateMove();
     }
 
     @Override
@@ -105,6 +106,36 @@ public class CoCCharacter extends GenericCharacter {
         }
         this.characterInfo.put("Damage Bonus", bonus);
         this.characterStats.put("Build", build);
+    }
+
+    private void generateMove() {
+        int move;
+        int str = this.characterStats.get("STR");
+        int dex = this.characterStats.get("DEX");
+        int siz = this.characterStats.get("SIZ");
+        if (dex < siz && str < siz) {
+            move = 7;
+        } if ((str > siz || dex > siz) || (str == dex && str == siz)) {
+            move = 8;
+        } else if (str > siz && dex > siz) {
+            move = 9;
+        } else {
+            move = 7;
+        }
+
+        if (this.getAge() >= 40 && this.getAge() <= 49) {
+            move -= 1;
+        } else if (this.getAge() >= 50 && this.getAge() <= 59) {
+            move -= 2;
+        } else if (this.getAge() >= 60 && this.getAge() <= 69) {
+            move -= 3;
+        } else if (this.getAge() >= 70 && this.getAge() <= 79) {
+            move -= 4;
+        } else if (this.getAge() >= 80) {
+            move -= 5;
+        }
+
+        this.characterStats.put("MOV", move);
     }
 
     private void ageModifier(int age) {
