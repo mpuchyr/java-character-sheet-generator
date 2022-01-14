@@ -220,7 +220,7 @@ public class CoCCharacter extends GenericCharacter {
 
     @Override
     protected String generateName(String sex) {
-        String temp = "N/A";
+        String temp = sex == "male" ? "John" : "Jane";
         if (sex.equals("male")) {
             temp = readRandomLineFromFile(MALE_NAME_FILE);
         } else {
@@ -229,32 +229,5 @@ public class CoCCharacter extends GenericCharacter {
         temp += " " + readRandomLineFromFile(LAST_NAME_FILE);
         return temp;
     }
-
-    // @Override
-    // protected String convertCharacterSkillsToString() {
-    //     String temp = "";
-    //     for (String key : characterSkills.keySet()) {
-    //         temp += key + " " + characterSkills.get(key) + "\n";
-    //     }
-    //     return temp;
-    // }
-
-
-    // @Override
-    // public String toString() {
-    //     String temp = super.toString();
-    //     temp += "STR: " + this.characterStats.get("STR") + "\n";
-    //         // "CON: " + this.characterStats.get("STR") + "\n" +
-    //         // "SIZ: " + this.characterStats.get("SIZ") + "\n" +
-    //         // "DEX: " + this.characterStats.get("DEX") + "\n" +
-    //         // "APP: " + this.characterStats.get("APP") + "\n" +
-    //         // "EDU: " + this.characterStats.get("EDU") + "\n" +
-    //         // "INT: " + this.characterStats.get("INT") + "\n" +
-    //         // "POW: " + this.characterStats.get("POW") + "\n" +
-    //         // "LUCK: " + this.characterStats.get("LUCK") + "\n" +
-    //         // "Occupation: " + this.characterInfo.get("Occupation") + "\n";
-    //     return temp;
-    // }
-
 
 }
