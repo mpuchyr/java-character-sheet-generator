@@ -54,6 +54,7 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
         this.ageModifier(this.getAge());
         this.generateHitPoints();
+        this.generateDamageBonusAndBuild();
     }
 
     @Override
@@ -77,6 +78,33 @@ public class CoCCharacter extends GenericCharacter {
     protected void generateHitPoints() {
         int hp = (this.characterStats.get("CON") + this.characterStats.get("SIZ")) / 10;
         this.characterStats.put("HP", hp);
+    }
+
+    protected void generateDamageBonusAndBuild() {
+        int total = this.characterStats.get("STR") + this.characterStats.get("SIZ");
+        String bonus;
+        int build;
+        if (total >= 2 && total <= 64) {
+            bonus = "-2";
+            build = -2;
+        } else if (total >= 65 && total <= 84) {
+            bonus = "-1";
+            build = -1;
+        } else if (total >= 85 && total <= 124) {
+            bonus = "None";
+            build = 0;
+        } else if (total >= 125 && total <= 164) {
+            bonus = "+1D4";
+            build = 1;
+        } else if (total >= 165 && total <= 204) {
+            bonus = "+1D6";
+            build = 2;
+        } else {
+            bonus = "+2D6";
+            build = 3;
+        }
+        this.characterInfo.put("Damage Bonus", bonus);
+        this.characterStats.put("Build", build);
     }
 
     private void ageModifier(int age) {
