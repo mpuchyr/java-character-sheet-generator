@@ -51,9 +51,11 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("EDU", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("INT", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.characterStats.put("POW", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
-        this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
         this.ageModifier(this.getAge());
         this.generateHitPoints();
+        this.characterStats.put("SAN", this.characterStats.get("INT"));
+        this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
+        this.generateMagicPoints();
         this.generateDamageBonusAndBuild();
         generateMove();
     }
@@ -79,6 +81,11 @@ public class CoCCharacter extends GenericCharacter {
     protected void generateHitPoints() {
         int hp = (this.characterStats.get("CON") + this.characterStats.get("SIZ")) / 10;
         this.characterStats.put("HP", hp);
+    }
+
+    protected void generateMagicPoints() {
+        int mp = this.characterStats.get("POW") / 5;
+        this.characterStats.put("MP", mp);
     }
 
     protected void generateDamageBonusAndBuild() {
