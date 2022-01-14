@@ -196,13 +196,22 @@ public abstract class GenericCharacter {
         return temp;
     }
 
-    protected String convertCharactersticsToString(HashMap<String, Integer> info) {
+    protected String convertCharacteristicsToString(HashMap<String, Integer> info) {
         String temp = "";
         for (String key : info.keySet()) {
             temp += key + " " + info.get(key) + "\n";
         }
         return temp;
     }
+
+    protected String convertCharacterInfoToString(HashMap<String, String> info) {
+        String temp = "";
+        for (String key : info.keySet()) {
+            temp += key + ": " + info.get(key) + "\n";
+        }
+        return temp;
+    }
+
 
 // Abstract Methods
     protected abstract String gameOfCharacter();
@@ -223,9 +232,11 @@ public abstract class GenericCharacter {
             + "Name: " + this.name + "\n"
             + "Age: " + this.age + "\n"
             + "Sex: " + this.sex + "\n"
+            + "\t -- Character Information -- \n"
+            + convertCharacterInfoToString(this.characterInfo)
             + "\t -- Character Stats -- \n"
-            + convertCharactersticsToString(this.characterStats)
+            + convertCharacteristicsToString(this.characterStats)
             + "\t -- Character Skills -- \n"
-            + convertCharactersticsToString(this.characterSkills);
+            + convertCharacteristicsToString(this.characterSkills);
     }
 }
