@@ -195,12 +195,25 @@ public class CoCCharacter extends GenericCharacter {
 
     private void statReduction(int statReduction, int appReduction) {
         this.characterStats.put("APP", this.characterStats.get("APP") - appReduction);
-        int strMod = (int)(Math.random() * (statReduction + 1)); 
-        int conMod = (int)(Math.random() * (statReduction - strMod + 1));
-        int dexMod = statReduction - (conMod + strMod);
-        this.characterStats.put("STR", this.characterStats.get("STR") - strMod);
-        this.characterStats.put("CON", this.characterStats.get("CON") - conMod);
-        this.characterStats.put("DEX", this.characterStats.get("DEX") - dexMod);
+        int total = statReduction;
+        String[] statsToReduce = {"STR", "CON", "DEX"};
+        while (total > 0) {
+            for (int i = 0; i < statsToReduce.length; i++) {
+                String stat = statsToReduce[i];
+                if (total == 0) {
+                    break;
+                }
+                int mod = (int)(Math.random() * (total + 1));
+                if (mod <= this.characterStats.get(stat)) {
+                    total -= mod;
+                    this.characterStats.put(stat, this.characterStats.get(stat) - mod);
+                } else {
+                    total -= this.characterStats.get(stat);
+                    this.characterStats.put(stat, 0);
+                }
+            }
+        }
+        
     }
 
     private boolean statCheck(HashMap<String, Integer> stat, String statToCheck) {

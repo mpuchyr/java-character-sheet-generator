@@ -3,7 +3,7 @@ John
 James
 William
 Charles
-Goerge
+George
 Joseph
 Richard
 Edward
