@@ -2,10 +2,7 @@ package src.main.models.characters;
 
 import java.io.FileInputStream;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-
-import javax.swing.text.html.parser.ContentModel;
 
 public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
