@@ -15,40 +15,65 @@ public class CoCCharacter extends GenericCharacter {
     private final String OCCUPATION_FILE = "src/main/models/data/CoCoccupations.txt";
     private final String SKILLS_FILE = "src/main/models/data/CoCAllSkills.txt";
 
+    public enum CharacterEra {
+        NINETEENTWENTIES,
+        MODERN
+    }
 
-    public CoCCharacter() {
+    private String era;
+
+    public CoCCharacter(CharacterEra characterEra) {
         super();
+        this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
-    public CoCCharacter(int age) {
+    public CoCCharacter(CharacterEra characterEra, int age) {
         super(age);
+        this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
-    public CoCCharacter(Sex sex) {
+    public CoCCharacter(CharacterEra characterEra, Sex sex) {
         super(sex);
+        this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
-    public CoCCharacter(String name, Sex sex) {
+    public CoCCharacter(CharacterEra characterEra, String name, Sex sex) {
         super(name, sex);
+        this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
-    public CoCCharacter(int age, Sex sex) {
+    public CoCCharacter(CharacterEra characterEra, int age, Sex sex) {
         super(age, sex);
+        this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
-    public CoCCharacter(String name, Sex sex, int age) {
+    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age) {
         super(name, sex, age);
+        this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
     }
 
-    public CoCCharacter(String name, Sex sex, int age, String occupation) {
+    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation) {
         super(name, sex, age);
+        this.determineEra(characterEra);
         this.characterInfo.put("Occupation", occupation);
+    }
+
+    protected void determineEra(CharacterEra characterEra) {
+        switch (characterEra) {
+            case NINETEENTWENTIES:
+                this.era = "1920s";
+                this.characterSkills.remove("Computer Use");
+                break;
+            case MODERN:
+                this.era = "Modern";
+                break;
+        }
     }
 
     @Override
@@ -223,7 +248,16 @@ public class CoCCharacter extends GenericCharacter {
     }
 
     private String generateOccupation() {
-        return readRandomLineFromFile(OCCUPATION_FILE);
+        if (this.era.equals("Modern")) {
+            return readRandomLineFromFile(OCCUPATION_FILE);
+        } else {
+            String occupation = readRandomLineFromFile(OCCUPATION_FILE);
+            while (occupation.equals("Hacker")) {
+                occupation = readRandomLineFromFile(OCCUPATION_FILE);
+            }
+            return occupation;
+        }
+        
     }
 
     @Override 
