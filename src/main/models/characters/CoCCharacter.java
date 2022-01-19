@@ -27,42 +27,49 @@ public class CoCCharacter extends GenericCharacter {
         super();
         this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
+        this.generatePersonalInterestSkills();
     }
 
     public CoCCharacter(CharacterEra characterEra, int age) {
         super(age);
         this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
+        this.generatePersonalInterestSkills();
     }
 
     public CoCCharacter(CharacterEra characterEra, Sex sex) {
         super(sex);
         this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
+        this.generatePersonalInterestSkills();
     }
 
     public CoCCharacter(CharacterEra characterEra, String name, Sex sex) {
         super(name, sex);
         this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
+        this.generatePersonalInterestSkills();
     }
 
     public CoCCharacter(CharacterEra characterEra, int age, Sex sex) {
         super(age, sex);
         this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
+        this.generatePersonalInterestSkills();
     }
 
     public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age) {
         super(name, sex, age);
         this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
+        this.generatePersonalInterestSkills();
     }
 
     public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation) {
         super(name, sex, age);
         this.determineEra(characterEra);
         this.characterInfo.put("Occupation", occupation);
+        this.generatePersonalInterestSkills();
     }
 
     protected void determineEra(CharacterEra characterEra) {
@@ -95,6 +102,7 @@ public class CoCCharacter extends GenericCharacter {
         this.generateMagicPoints();
         this.generateDamageBonusAndBuild();
         generateMove();
+        
     }
 
     @Override
@@ -262,7 +270,7 @@ public class CoCCharacter extends GenericCharacter {
         
     }
 
-    private String getRandomKeyFromHash() {
+    private String getRandomCharacterSkill() {
         Set<String> keySet = this.characterSkills.keySet();
         List<String> keyList = new ArrayList<>(keySet);
         
@@ -270,6 +278,23 @@ public class CoCCharacter extends GenericCharacter {
         int randId = (int)(Math.random() * size);
 
         return keyList.get(randId);
+    }
+
+    private void generatePersonalInterestSkills() {
+        int total = this.personalInterestPoints;
+        while (total > 0) {
+            int mod = (int)(Math.random() * (total + 1));
+            String skill = this.getRandomCharacterSkill();
+            int skillNum = this.characterSkills.get(skill);
+            if (skillNum + mod < 90) {
+                this.characterSkills.put(skill, skillNum + mod);
+                total -= mod;
+            } else {
+                int deduction = 90 - this.characterSkills.get(skill);
+                this.characterSkills.put(skill, 90);
+                total -= deduction;
+            }
+        }
     }
 
     @Override 
