@@ -1,8 +1,11 @@
 package src.main.models.characters;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
@@ -257,6 +260,16 @@ public class CoCCharacter extends GenericCharacter {
             return occupation;
         }
         
+    }
+
+    private String getRandomKeyFromHash() {
+        Set<String> keySet = this.characterSkills.keySet();
+        List<String> keyList = new ArrayList<>(keySet);
+        
+        int size = keyList.size();
+        int randId = (int)(Math.random() * size);
+
+        return keyList.get(randId);
     }
 
     @Override 
