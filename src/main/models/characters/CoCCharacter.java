@@ -18,6 +18,7 @@ public class CoCCharacter extends GenericCharacter {
     }
 
     private String era;
+    private int personalInterestPoints;
 
     public CoCCharacter(CharacterEra characterEra) {
         super();
@@ -85,6 +86,7 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("POW", generateStatWithModifier(6, 2, Modifier.ADD, 6) * 5);
         this.ageModifier(this.getAge());
         this.generateHitPoints();
+        this.personalInterestPoints = this.characterStats.get("INT") * 2;
         this.characterStats.put("SAN", this.characterStats.get("INT"));
         this.characterStats.put("LUCK", generateStatWithModifier(6, 3, Modifier.MULTIPLY, 5));
         this.generateMagicPoints();
