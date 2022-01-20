@@ -286,13 +286,15 @@ public class CoCCharacter extends GenericCharacter {
             int mod = (int)(Math.random() * (total + 1));
             String skill = this.getRandomCharacterSkill();
             int skillNum = this.characterSkills.get(skill);
-            if (skillNum + mod < 90) {
-                this.characterSkills.put(skill, skillNum + mod);
-                total -= mod;
-            } else {
-                int deduction = 90 - this.characterSkills.get(skill);
-                this.characterSkills.put(skill, 90);
-                total -= deduction;
+            if (!(skill.equals("Cthulhu Mythos"))) {
+                if (skillNum + mod < 90) {
+                    this.characterSkills.put(skill, skillNum + mod);
+                    total -= mod;
+                } else {
+                    int deduction = 90 - this.characterSkills.get(skill);
+                    this.characterSkills.put(skill, 90);
+                    total -= deduction;
+                }
             }
         }
     }
