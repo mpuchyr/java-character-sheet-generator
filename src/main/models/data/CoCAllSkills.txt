@@ -25,6 +25,7 @@ Law,5
 Library Use,20
 Listen,20
 Locksmith,1
+Lore,1
 Mech. Repair,10
 Medecine,1
 Natural World,10
@@ -35,6 +36,7 @@ Persuade,10
 Pilot,1
 Psychology,10
 Psychoanalysis,1
+Read Lips,1
 Ride,5
 Science,1
 Sleight of Hand,10
