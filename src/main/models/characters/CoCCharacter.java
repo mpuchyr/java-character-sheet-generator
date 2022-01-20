@@ -14,6 +14,10 @@ public class CoCCharacter extends GenericCharacter {
     private final String LAST_NAME_FILE = "src/main/models/data/CoCLastNames.txt";
     private final String OCCUPATION_FILE = "src/main/models/data/CoCoccupations.txt";
     private final String SKILLS_FILE = "src/main/models/data/CoCAllSkills.txt";
+    private final String ART_CRAFT_SPEC_FILE = "/src/main/models/CoCArtCraftSpecializations.txt";
+    private final String SCIENCE_SPEC_FILE = "/src/main/models/CoCScienceSpecializations.txt";
+    private final String SURVIVAL_SPEC_FILE = "/src/main/models/CoCSurvivalSpecializations.txt";
+    private final String FIGHTING_SKILL_SPEC_FILE = "/src/main/models/CoCFightingSpecializations.txt";
 
     public enum CharacterEra {
         NINETEENTWENTIES,

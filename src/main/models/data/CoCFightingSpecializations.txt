@@ -1,0 +1,7 @@
+Axe
+Chainsaw
+Flail
+Garrote
+Spear
+Sword
+Whip
