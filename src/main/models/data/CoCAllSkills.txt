@@ -18,6 +18,7 @@ Firearms (Handgun),20
 Firearms (Rifle/Shotgun),25
 First Aid,30
 History,5
+Hypnosis,1
 Intimidate,15
 Jump,20
 Language (Own),0

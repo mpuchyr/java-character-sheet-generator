@@ -18,6 +18,7 @@ public class CoCCharacter extends GenericCharacter {
     private final String SCIENCE_SPEC_FILE = "/src/main/models/CoCScienceSpecializations.txt";
     private final String SURVIVAL_SPEC_FILE = "/src/main/models/CoCSurvivalSpecializations.txt";
     private final String FIGHTING_SKILL_SPEC_FILE = "/src/main/models/CoCFightingSpecializations.txt";
+    private final String LANGUAGE_SPEC_FILE = "/src/main/models/CoCLanguageSpecializations.txt";
 
     public enum CharacterEra {
         NINETEENTWENTIES,
