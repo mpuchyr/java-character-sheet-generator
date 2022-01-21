@@ -21,6 +21,7 @@ History,5
 Hypnosis,1
 Intimidate,15
 Jump,20
+Language (Other),1
 Language (Own),0
 Law,5
 Library Use,20
