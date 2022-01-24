@@ -264,16 +264,55 @@ public class CoCCharacter extends GenericCharacter {
     }
 
     private String generateOccupation() {
+        String occupation;
         if (this.era.equals("Modern")) {
-            return readRandomLineFromFile(OCCUPATION_FILE);
-        } else {
-            String occupation = readRandomLineFromFile(OCCUPATION_FILE);
-            while (occupation.equals("Hacker")) {
+            occupation = readRandomLineFromFile(OCCUPATION_FILE);
+            boolean valid = validOccupation(occupation);
+            while (!valid) {
                 occupation = readRandomLineFromFile(OCCUPATION_FILE);
             }
-            return occupation;
+
+        } else {
+            occupation = readRandomLineFromFile(OCCUPATION_FILE);
+            boolean valid = validOccupation(occupation);
+            while (occupation.equals("Hacker") || !valid) {
+                occupation = readRandomLineFromFile(OCCUPATION_FILE);
+                valid = validOccupation(occupation);
+            }
         }
+        return occupation;
         
+    }
+
+    private boolean validOccupation(String occupation) {
+        boolean validOccupation = true;
+        if (this.getAge() < 20) {
+            if (occupation.equals("Antiquarian")) {
+                validOccupation = false;
+            } else if (occupation.equals("Clergy Member")) {
+                validOccupation = false;
+            } else if (occupation.equals("Doctor of Medicine")) {
+                validOccupation = false;
+            } else if (occupation.equals("Engineer")) {
+                validOccupation = false;
+            } else if (occupation.equals("Lawyer")) {
+                validOccupation = false;
+            } else if (occupation.equals("Military Officer")) {
+                validOccupation = false;
+            } else if (occupation.equals("Parapsychologist")) {
+                validOccupation = false;
+            } else if (occupation.equals("Police Detective")) {
+                validOccupation = false;
+            } else if (occupation.equals("Police Officer")) {
+                validOccupation = false;
+            } else if (occupation.equals("Private Investigator")) {
+                validOccupation = false;
+            } else if (occupation.equals("Professor")) {
+                validOccupation = false;
+            }
+        }
+
+        return validOccupation;
     }
 
     private String getRandomCharacterSkill() {
