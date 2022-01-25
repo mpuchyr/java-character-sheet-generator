@@ -12,6 +12,7 @@ Disguise,5
 Dodge,0
 Drive Auto,20
 Elec. Repair,10
+Electronics,1
 Fast Talk,5
 Fighting Brawl,25
 Firearms (Handgun),20

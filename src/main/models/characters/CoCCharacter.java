@@ -83,6 +83,7 @@ public class CoCCharacter extends GenericCharacter {
             case NINETEENTWENTIES:
                 this.era = "1920s";
                 this.characterSkills.remove("Computer Use");
+                this.characterSkills.remove("Electronics");
                 break;
             case MODERN:
                 this.era = "Modern";
@@ -331,7 +332,7 @@ public class CoCCharacter extends GenericCharacter {
             int mod = (int)(Math.random() * (total + 1));
             String skill = this.getRandomCharacterSkill();
             int skillNum = this.characterSkills.get(skill);
-            if (!(skill.equals("Cthulhu Mythos"))) {
+            if (skillIsValid(skill)) {
                 if (checkForSpecificSkills(skill)) {
                     this.characterSkills.remove(skill);
                     String replacementSkill = generateSkillSpecialization(skill);
@@ -349,6 +350,13 @@ public class CoCCharacter extends GenericCharacter {
                 }
             }
         }
+    }
+
+    protected boolean skillIsValid(String skill) {
+        if (skill.equals("Cthulhu Mythos")) {
+            return false;
+        }
+        return true;
     }
 
     protected boolean checkForSpecificSkills(String skill) {
