@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
@@ -258,7 +259,7 @@ public class CoCCharacter extends GenericCharacter {
         
     }
 
-    private boolean statCheck(HashMap<String, Integer> stat, String statToCheck) {
+    private boolean statCheck(ConcurrentHashMap<String, Integer> stat, String statToCheck) {
         int roll = (int)(Math.random() * 100) + 1;
         boolean pass = roll <= stat.get(statToCheck);
         return pass;

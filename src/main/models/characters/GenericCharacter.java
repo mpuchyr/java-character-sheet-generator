@@ -5,15 +5,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class GenericCharacter {
    private String name;
    private String sex;
    private int age;
 
-   protected LinkedHashMap<String, Integer> characterStats;
-   protected HashMap<String, String> characterInfo;
-   protected LinkedHashMap<String, Integer> characterSkills;
+//    protected LinkedHashMap<String, Integer> characterStats;
+//    protected HashMap<String, String> characterInfo;
+//    protected LinkedHashMap<String, Integer> characterSkills;
+
+    ConcurrentHashMap<String, Integer> characterStats;
+    ConcurrentHashMap<String, String> characterInfo;
+    ConcurrentHashMap<String, Integer> characterSkills;
 
    public enum Sex {
        MALE,
@@ -91,9 +96,12 @@ public abstract class GenericCharacter {
    }
 
    private void initializeHashMaps() {
-        this.characterStats = new LinkedHashMap<String, Integer>();
-        this.characterInfo = new HashMap<String, String>();
-        this.characterSkills = new LinkedHashMap<String, Integer>();
+        // this.characterStats = new LinkedHashMap<String, Integer>();
+        // this.characterInfo = new HashMap<String, String>();
+        // this.characterSkills = new LinkedHashMap<String, Integer>();
+        this.characterStats = new ConcurrentHashMap<String, Integer>();
+        this.characterInfo = new ConcurrentHashMap<String, String>();
+        this.characterSkills = new ConcurrentHashMap<String, Integer>();
    }
 
 // Getters and Setters
@@ -196,7 +204,7 @@ public abstract class GenericCharacter {
         return temp;
     }
 
-    protected String convertCharacteristicsToString(HashMap<String, Integer> info) {
+    protected String convertCharacteristicsToString(ConcurrentHashMap<String, Integer> info) {
         String temp = "";
         for (String key : info.keySet()) {
             temp += key + " " + info.get(key) + "\n";
@@ -204,7 +212,7 @@ public abstract class GenericCharacter {
         return temp;
     }
 
-    protected String convertCharacterInfoToString(HashMap<String, String> info) {
+    protected String convertCharacterInfoToString(ConcurrentHashMap<String, String> info) {
         String temp = "";
         for (String key : info.keySet()) {
             temp += key + ": " + info.get(key) + "\n";
