@@ -3,6 +3,8 @@ package src.main.models.characters;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,6 +13,8 @@ public abstract class GenericCharacter {
    private String name;
    private String sex;
    private int age;
+
+   
 
 //    protected LinkedHashMap<String, Integer> characterStats;
 //    protected HashMap<String, String> characterInfo;
@@ -206,7 +210,9 @@ public abstract class GenericCharacter {
 
     protected String convertCharacteristicsToString(ConcurrentHashMap<String, Integer> info) {
         String temp = "";
-        for (String key : info.keySet()) {
+        ArrayList<String> sortedKeys = new ArrayList<String>(info.keySet());
+        Collections.sort(sortedKeys);
+        for (String key : sortedKeys) {
             temp += key + " " + info.get(key) + "\n";
         }
         return temp;
@@ -214,7 +220,9 @@ public abstract class GenericCharacter {
 
     protected String convertCharacterInfoToString(ConcurrentHashMap<String, String> info) {
         String temp = "";
-        for (String key : info.keySet()) {
+        ArrayList<String> sortedKeys = new ArrayList<String>(info.keySet());
+        Collections.sort(sortedKeys);
+        for (String key : sortedKeys) {
             temp += key + ": " + info.get(key) + "\n";
         }
         return temp;
@@ -231,6 +239,7 @@ public abstract class GenericCharacter {
     protected abstract void generateAllSkills();
 
     protected abstract void generateHitPoints();
+
 
 
 
