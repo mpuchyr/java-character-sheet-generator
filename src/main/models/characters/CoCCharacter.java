@@ -2,7 +2,6 @@ package src.main.models.characters;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -18,7 +17,6 @@ public class CoCCharacter extends GenericCharacter {
     private final String ART_CRAFT_SPEC_FILE = "src/main/models/data/CoCArtCraftSpecializations.txt";
     private final String SCIENCE_SPEC_FILE = "src/main/models/data/CoCScienceSpecializations.txt";
     private final String SURVIVAL_SPEC_FILE = "src/main/models/data/CoCSurvivalSpecializations.txt";
-    private final String FIGHTING_SKILL_SPEC_FILE = "src/main/models/data/CoCFightingSpecializations.txt";
     private final String LANGUAGE_SPEC_FILE = "src/main/models/data/CoCLanguageSpecializations.txt";
     private final String PILOT_SPEC_FILE = "src/main/models/data/CoCPilotSpecializations.txt";
 
