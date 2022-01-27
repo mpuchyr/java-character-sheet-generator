@@ -389,6 +389,7 @@ public class CoCCharacter extends GenericCharacter {
         return temp;
     }
 
+
     @Override 
     protected String gameOfCharacter() {
         return this.GAME;

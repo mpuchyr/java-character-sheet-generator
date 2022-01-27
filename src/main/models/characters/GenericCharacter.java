@@ -226,6 +226,9 @@ public abstract class GenericCharacter {
         return temp;
     }
 
+    protected int rollDie(int die) {
+        return (int)(Math.random() * die) + 1;
+    }
 
 // Abstract Methods
     protected abstract String gameOfCharacter();
