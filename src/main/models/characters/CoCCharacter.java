@@ -20,6 +20,7 @@ public class CoCCharacter extends GenericCharacter {
     private final String LANGUAGE_SPEC_FILE = "src/main/models/data/CoCLanguageSpecializations.txt";
     private final String PILOT_SPEC_FILE = "src/main/models/data/CoCPilotSpecializations.txt";
 
+
     public enum CharacterEra {
         NINETEENTWENTIES,
         MODERN
