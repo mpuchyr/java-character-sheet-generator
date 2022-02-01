@@ -3,6 +3,7 @@ package src.main.models.occupations;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CoCOccupations {
     private String name;
@@ -12,7 +13,7 @@ public class CoCOccupations {
     private int skillPoints;
 
 
-    public CoCOccupations(String name, HashMap<String, Integer> characterStats) {
+    public CoCOccupations(String name, ConcurrentHashMap<String, Integer> characterStats) {
         this.name = name;
         switch (name) {
             case "Antiquarian":
@@ -155,10 +156,13 @@ public class CoCOccupations {
                 this.creditMax = 30;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"APP", "POW"}, characterStats) * 2;
                 break;
+            default:
+                this.skillPoints = characterStats.get("EDU") * 4;
+                break;
         }
     }
 
-    private int checkForHighestSkill(String[] skills, HashMap<String, Integer> characterStats) {
+    private int checkForHighestSkill(String[] skills, ConcurrentHashMap<String, Integer> characterStats) {
         int highest = characterStats.get(skills[0]);
         for (int i = 1; i < skills.length; i++) {
             if (characterStats.get(skills[i]) > highest) {
@@ -166,6 +170,10 @@ public class CoCOccupations {
             } 
         }
         return highest;
+    }
+
+    public int getSkillPoints() {
+        return this.skillPoints;
     }
 
 

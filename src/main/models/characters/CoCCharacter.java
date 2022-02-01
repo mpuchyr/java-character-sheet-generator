@@ -7,6 +7,8 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import src.main.models.occupations.CoCOccupations;
+
 public class CoCCharacter extends GenericCharacter {
     private final String GAME = "Call of Cthulhu";
     private final String MALE_NAME_FILE = "src/main/models/data/CoCMaleNames.txt";
