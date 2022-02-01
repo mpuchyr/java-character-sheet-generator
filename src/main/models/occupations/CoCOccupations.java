@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class CoCOccupations {
     private String name;
-    private String[] occupationSkills;
+    private String[][] occupationSkills;
     private int creditMin;
     private int creditMax;
     private int skillPoints;
@@ -20,41 +20,65 @@ public class CoCOccupations {
                 this.creditMin = 30;
                 this.creditMax = 70;
                 this.skillPoints = characterStats.get("EDU") * 4;
+                this.occupationSkills = new String[][]{
+                    {"Appraise"}, {"Art/Craft"}, {"History"}, {"Library Use"}, {"Language (Other)"}, {"Spot Hidden"}, {"Any"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}
+                };
                 break;
             case "Artist":
                 this.creditMin = 9;
                 this.creditMax = 50;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"POW", "DEX"}, characterStats) * 2;
+                this.occupationSkills = new String[][]{
+                    {"Art/Craft"}, {"History", "Natural World"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Language (Other)"}, {"Psychology"}, {"Spot Hidden"}, {"Any", "Any"}
+                };
                 break;
             case "Athlete":
                 this.creditMin = 9;
                 this.creditMax = 70;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"STR", "DEX"}, characterStats) * 2;
+                this.occupationSkills = new String[][]{
+                    {"Climb"}, {"Jump"}, {"Fighting (Brawl)"}, {"Ride"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Swim"}, {"Throw"}, {"Any"}
+                };
                 break;
             case "Author":
                 this.creditMin = 9;
                 this.creditMax = 30;
                 this.skillPoints = characterStats.get("EDU") * 4;
+                this.occupationSkills = new String[][]{
+                    {"Art/Craft"}, {"History"}, {"Library Use"}, {"Natural World", "Occult"}, {"Language (Other)"}, {"Language (Own)"}, {"Psychology"}, {"Any"}
+                };
                 break;
             case "Clergy Member":
                 this.creditMin = 9;
                 this.creditMax = 60;
                 this.skillPoints = characterStats.get("EDU") * 4;
+                this.occupationSkills = new String[][]{
+                    {"Accounting"}, {"History"}, {"Library Use"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"}, {"Any"}
+                };
                 break;
             case "Criminal":
                 this.creditMin = 5;
                 this.creditMax = 65;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
+                this.occupationSkills = new String[][]{
+                    {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"}, {"Spot Hidden"}, {"Stealth"}, {""}
+                };
                 break;
             case "Dilettante":
                 this.creditMin = 50;
                 this.creditMax = 99;
                 this.skillPoints = characterStats.get("EDU") * 4;
+                this.occupationSkills = new String[][]{
+                    {"Art/Craft"}, {"Firearms"}, {"Language (Other)"}, {"Ride"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Any", "Any", "Any"}
+                };
                 break;
             case "Doctor of Medicine":
                 this.creditMin = 30;
                 this.creditMax = 80;
                 this.skillPoints = characterStats.get("EDU") * 4;
+                this.occupationSkills = new String[][]{
+                    {"First Aid"}, {"Language (Other) - Latin"}, {"Medicine"}, {"Psychology"}, {"Science - Biology"}, {"Science - Pharmacy"}, {"Any, Any"} 
+                };
                 break;
             case "Drifter":
                 this.creditMin = 0;
