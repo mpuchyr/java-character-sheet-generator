@@ -261,8 +261,20 @@ public class CoCOccupations {
         return highest;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public int getSkillPoints() {
         return this.skillPoints;
+    }
+
+    public int getCreditMin() {
+        return this.creditMin;
+    }
+
+    public int getCreditMax() {
+        return this.creditMax;
     }
 
     public String[][] getOccupationSkills() {
