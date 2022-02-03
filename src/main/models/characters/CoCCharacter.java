@@ -35,6 +35,7 @@ public class CoCCharacter extends GenericCharacter {
         super();
         this.determineEra(characterEra);
         this.characterInfo.put("Occupation", generateOccupation());
+        this.generateOccupationSkills();
         this.generatePersonalInterestSkills();
     }
 
@@ -284,6 +285,12 @@ public class CoCCharacter extends GenericCharacter {
             }
         }
         return occupation;
+        
+    }
+
+    private void generateOccupationSkills() {
+        CoCOccupations occupation = new CoCOccupations(this.characterInfo.get("Occupation"), this.characterStats, this.characterSkills);
+        this.characterSkills = occupation.getCharacterSkills();
         
     }
 

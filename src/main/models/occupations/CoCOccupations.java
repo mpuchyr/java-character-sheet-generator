@@ -3,18 +3,21 @@ package src.main.models.occupations;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class CoCOccupations {
     private String name;
     private String[][] occupationSkills;
+    private ConcurrentHashMap<String, Integer> characterSkills;
     private int creditMin;
     private int creditMax;
     private int skillPoints;
 
 
-    public CoCOccupations(String name, ConcurrentHashMap<String, Integer> characterStats) {
+    public CoCOccupations(String name, ConcurrentHashMap<String, Integer> characterStats, ConcurrentHashMap<String, Integer> characterSkills) {
         this.name = name;
+        this.characterSkills = characterSkills;
         switch (name) {
             case "Antiquarian":
                 this.creditMin = 30;
@@ -244,11 +247,14 @@ public class CoCOccupations {
                 break;
             default:
                 this.skillPoints = characterStats.get("EDU") * 4;
+                this.creditMin = 0;
+                this.creditMax = 99;
                 this.occupationSkills = new String[][]{
                     {"Any", "Any", "Any", "Any", "Any", "Any", "Any", "Any"}
                 };
                 break;
         }
+        this.generateCreditRating();
     }
 
     private int checkForHighestSkill(String[] skills, ConcurrentHashMap<String, Integer> characterStats) {
@@ -279,6 +285,17 @@ public class CoCOccupations {
 
     public String[][] getOccupationSkills() {
         return this.occupationSkills;
+    }
+
+    public ConcurrentHashMap<String, Integer> getCharacterSkills() {
+        return this.characterSkills;
+    }
+
+    private void generateCreditRating() {
+        Random r = new Random();
+        int randomNum = r.nextInt((this.creditMax - this.creditMin) + 1) + this.creditMin;
+        this.characterSkills.put("Credit Rating", randomNum);
+        this.skillPoints = skillPoints -= randomNum;
     }
 
 
