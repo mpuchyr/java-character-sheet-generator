@@ -3,7 +3,9 @@ package src.main.models.occupations;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class CoCOccupations {
@@ -64,7 +66,7 @@ public class CoCOccupations {
                 this.creditMax = 65;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"}, {"Spot Hidden"}, {"Stealth"}, {""}
+                    {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"}, {"Spot Hidden"}, {"Stealth"}, {"Any"}
                 };
                 break;
             case "Dilettante":
@@ -226,7 +228,7 @@ public class CoCOccupations {
                 this.creditMax = 30;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Climb", "Swim"}, {"Dodge"}, {"Fighting"}, {"Firearms Handgun", "Firearms Rifle/Shotgun", "Firearms Flamethrower", "Firearms Machine Gun", "Firearms Submachine Gun"}, {"First Aid", "Mechanical Repair", "Language (Other)"}, {"First Aid", "Mechanical Repair", "Language (Other)"}
+                    {"Climb", "Swim"}, {"Dodge"}, {"Fighting (Brawl)"}, {"Firearms Handgun", "Firearms Rifle/Shotgun", "Firearms Flamethrower", "Firearms Machine Gun", "Firearms Submachine Gun"}, {"First Aid", "Mechanical Repair", "Language (Other)"}, {"First Aid", "Mechanical Repair", "Language (Other)"}
                 };
                 break;
             case "Tribe Member":
@@ -234,7 +236,7 @@ public class CoCOccupations {
                 this.creditMax = 15;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Climb"}, {"Fighting", "Throw"}, {"Natural World"}, {"Listen"}, {"Occult"}, {"Swim"}, {"Survival"} 
+                    {"Climb"}, {"Fighting (Brawl)", "Throw"}, {"Natural World"}, {"Listen"}, {"Occult"}, {"Swim"}, {"Survival"} 
                 };
                 break;
             case "Zealot":
@@ -255,6 +257,7 @@ public class CoCOccupations {
                 break;
         }
         this.generateCreditRating();
+        this.assignSkillPoints();
     }
 
     private int checkForHighestSkill(String[] skills, ConcurrentHashMap<String, Integer> characterStats) {
@@ -296,6 +299,70 @@ public class CoCOccupations {
         int randomNum = r.nextInt((this.creditMax - this.creditMin) + 1) + this.creditMin;
         this.characterSkills.put("Credit Rating", randomNum);
         this.skillPoints = skillPoints -= randomNum;
+    }
+
+    private void assignSkillPoints() {
+        int total = this.skillPoints;
+        while (total > 0) {
+            for (int i = 0; i < this.occupationSkills.length; i++) {
+                if (total <= 0) break;
+                if (this.occupationSkills[i][0].equals("Any")) {
+                    for (int j = 0; j < this.occupationSkills[i].length; j++) {
+                        String skill = getRandomCharacterSkill();
+                        while (skill.equals("Cthulhu Mythos") || skill.equals("Credit Rating")) {
+                            skill = getRandomCharacterSkill();
+                        }
+                        if (total <= 0) {
+                            break;
+                        }
+                        int pointsToAdd = total >= 20 ? generateRandomNum(20) : generateRandomNum(total);
+                        total = addPointsToSkill(skill, pointsToAdd, total);
+                    }
+                } else if (this.occupationSkills[i].length > 1) {
+                    String skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length)];
+                    int pointsToAdd = total >= 20 ? generateRandomNum(20) : generateRandomNum(total);
+                    total = addPointsToSkill(skill, pointsToAdd, total);
+                } else {
+                    String skill = this.occupationSkills[i][0];
+                    int pointsToAdd = total >= 20 ? generateRandomNum(20) : generateRandomNum(total);
+                    total = addPointsToSkill(skill, pointsToAdd, total);
+                }
+                if (total > 0 && i == this.occupationSkills.length) {
+                    i = 0;
+                }
+            }
+        }
+    }
+
+    private int addPointsToSkill(String skill, int pointsToAdd, int totalPoints) {
+        if (this.characterSkills.get(skill) == null) {
+            this.characterSkills.put(skill, 1);
+        }
+        int skillPoints = this.characterSkills.get(skill);
+        if (skillPoints + pointsToAdd <= 90) {
+            this.characterSkills.put(skill, skillPoints + pointsToAdd);
+            return totalPoints - pointsToAdd;
+        } else if (skillPoints + pointsToAdd > 90)  {
+            this.characterSkills.put(skill, 90);
+            int deduction = 90 - this.characterSkills.get(skill);
+            return totalPoints - deduction;
+        }
+        return totalPoints;
+
+    }
+
+    private int generateRandomNum(int range) {
+        return (int)(Math.random() * range) + 1;
+    }
+
+    private String getRandomCharacterSkill() {
+        Set<String> keySet = this.characterSkills.keySet();
+        List<String> keyList = new ArrayList<>(keySet);
+        
+        int size = keyList.size();
+        int randId = (int)(Math.random() * size);
+
+        return keyList.get(randId);
     }
 
 
