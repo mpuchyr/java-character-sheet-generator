@@ -72,7 +72,7 @@ public class CoCOccupations {
                 this.creditMax = 99;
                 this.skillPoints = characterStats.get("EDU") * 4;
                 this.occupationSkills = new String[][]{
-                    {"Art/Craft"}, {"Firearms"}, {"Language (Other)"}, {"Ride"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Any", "Any", "Any"}
+                    {"Art/Craft"}, {"Firearms Handgun", "Firearms Rifle/Shotgun"}, {"Language (Other)"}, {"Ride"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Any", "Any", "Any"}
                 };
                 break;
             case "Doctor of Medicine":
@@ -193,7 +193,7 @@ public class CoCOccupations {
                 this.creditMax = 50;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Art/Craft (Acting)", "Disguise"}, {"Firearms"}, {"Law"}, {"Listen"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"}, {"Spot Hidden"}, {"Any"}
+                    {"Art/Craft (Acting)", "Disguise"}, {"Firearms Handgun", "Firearms Rifle/Shotgun"}, {"Law"}, {"Listen"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"}, {"Spot Hidden"}, {"Any"}
                 };
                 break;
             case "Police Officer":
@@ -201,7 +201,7 @@ public class CoCOccupations {
                 this.creditMax = 30;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Fighting (Brawl)"}, {"Firearms"}, {"First Aid"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Law"}, {"Psychology"}, {"Spot Hidden"}, {"Drive Auto", "Ride"}
+                    {"Fighting (Brawl)"}, {"Firearms Handgun", "Firearms Rifle/Shotgun"}, {"First Aid"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Law"}, {"Psychology"}, {"Spot Hidden"}, {"Drive Auto", "Ride"}
                 };
                 break;
             case "Private Investigator":
@@ -210,7 +210,7 @@ public class CoCOccupations {
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
                     {"Art/Craft (Photography)"}, {"Disguise"}, {"Law"}, {"Library Use"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"},
-                    {"Spot Hidden"}, {"Computer Use", "Locksmith", "Firearms"}
+                    {"Spot Hidden"}, {"Computer Use", "Locksmith", "Firearms Handgun"}
                 };
                 break;
             case "Professor":
@@ -226,7 +226,7 @@ public class CoCOccupations {
                 this.creditMax = 30;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Climb", "Swim"}, {"Dodge"}, {"Fighting"}, {"Firearms"}, {"First Aid", "Mechanical Repair", "Language (Other)"}, {"First Aid", "Mechanical Repair", "Language (Other)"}
+                    {"Climb", "Swim"}, {"Dodge"}, {"Fighting"}, {"Firearms Handgun", "Firearms Rifle/Shotgun", "Firearms Flamethrower", "Firearms Machine Gun", "Firearms Submachine Gun"}, {"First Aid", "Mechanical Repair", "Language (Other)"}, {"First Aid", "Mechanical Repair", "Language (Other)"}
                 };
                 break;
             case "Tribe Member":
