@@ -319,7 +319,7 @@ public class CoCOccupations {
                         total = addPointsToSkill(skill, pointsToAdd, total);
                     }
                 } else if (this.occupationSkills[i].length > 1) {
-                    String skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length)];
+                    String skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
                     int pointsToAdd = total >= 20 ? generateRandomNum(20) : generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 } else {
