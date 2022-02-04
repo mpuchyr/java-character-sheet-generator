@@ -324,16 +324,16 @@ public class CoCOccupations {
                         if (total <= 0) {
                             break;
                         }
-                        int pointsToAdd = total >= 20 ? generateRandomNum(20) : generateRandomNum(total);
+                        int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
                         total = addPointsToSkill(skill, pointsToAdd, total);
                     }
                 } else if (this.occupationSkills[i].length > 1) {
                     String skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
-                    int pointsToAdd = total >= 20 ? generateRandomNum(20) : generateRandomNum(total);
+                    int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 } else {
                     String skill = this.occupationSkills[i][0];
-                    int pointsToAdd = total >= 20 ? generateRandomNum(20) : generateRandomNum(total);
+                    int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 }
                 if (total > 0 && i == this.occupationSkills.length) {
