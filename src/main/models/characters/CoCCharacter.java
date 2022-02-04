@@ -386,15 +386,15 @@ public class CoCCharacter extends GenericCharacter {
     protected String generateSkillSpecialization(String skill) {
         String temp = skill + " ";
         if (skill.equals("Art/Craft")) {
-            return temp += this.readRandomLineFromFile(ART_CRAFT_SPEC_FILE);
+            return temp += "(" + this.readRandomLineFromFile(ART_CRAFT_SPEC_FILE) + ")";
         } else if (skill.equals("Language (Other)")) {
-            return temp += this.readRandomLineFromFile(LANGUAGE_SPEC_FILE);
+            return temp += "(" + this.readRandomLineFromFile(LANGUAGE_SPEC_FILE) + ")";
         } else if (skill.equals("Pilot")) {
-            return temp += this.readRandomLineFromFile(PILOT_SPEC_FILE);
+            return temp += "(" + this.readRandomLineFromFile(PILOT_SPEC_FILE) + ")";
         } else if (skill.equals("Science")) {
-            return temp += this.readRandomLineFromFile(SCIENCE_SPEC_FILE);
+            return temp += "(" + this.readRandomLineFromFile(SCIENCE_SPEC_FILE) + ")";
         } else if (skill.equals("Survival")) {
-            return temp += this.readRandomLineFromFile(SURVIVAL_SPEC_FILE);
+            return temp += "(" + this.readRandomLineFromFile(SURVIVAL_SPEC_FILE) + ")";
         }
         return temp;
     }
