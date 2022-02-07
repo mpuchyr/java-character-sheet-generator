@@ -329,6 +329,11 @@ public class CoCOccupations {
                     }
                 } else if (this.occupationSkills[i].length > 1) {
                     String skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
+                    while (skill.equals(this.occupationSkills[i-1][0])) {
+                        skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
+                    }
+                    String[] skillArray = {skill};
+                    this.occupationSkills[i] = skillArray;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 } else {
