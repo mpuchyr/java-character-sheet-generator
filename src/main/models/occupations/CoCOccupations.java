@@ -87,7 +87,7 @@ public class CoCOccupations {
                 this.creditMax = 99;
                 this.skillPoints = characterStats.get("EDU") * 4;
                 this.occupationSkills = new String[][]{
-                    {"Art/Craft"}, {"Firearms Handgun", "Firearms Rifle/Shotgun"}, {"Language (Other)"}, {"Ride"}, 
+                    {"Art/Craft"}, {"Firearms (Handgun)", "Firearms (Rifle/Shotgun)"}, {"Language (Other)"}, {"Ride"}, 
                     {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Any"}, {"Any"}, {"Any"}
                 };
                 break;
@@ -175,7 +175,7 @@ public class CoCOccupations {
                 this.creditMax = 70;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Accounting"}, {"Firearms"}, {"Navigate"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"},
+                    {"Accounting"}, {"Firearms (Handgun), Firearms (Rifle/Shotgun)"}, {"Navigate"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"},
                     {"Psychology"}, {"Survival"}, {"Any"}
                 };
                 break;
@@ -210,7 +210,7 @@ public class CoCOccupations {
                 this.creditMax = 70;
                 this.skillPoints = characterStats.get("EDU") * 2 + characterStats.get("DEX") * 2;
                 this.occupationSkills = new String[][]{
-                    {"Electrical Repair"}, {"Mechanical Repair"}, {"Op. Hv. Machine"}, {"Pilot (aircraft)"}, {"Science (Astronomy)"}, 
+                    {"Electrical Repair"}, {"Mechanical Repair"}, {"Op. Hv. Machine"}, {"Pilot (Aircraft)"}, {"Science (Astronomy)"}, 
                     {"Any"}, {"Any"}
                 };
                 break;
@@ -219,7 +219,7 @@ public class CoCOccupations {
                 this.creditMax = 50;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Art/Craft (Acting)", "Disguise"}, {"Firearms Handgun", "Firearms Rifle/Shotgun"}, {"Law"}, {"Listen"}, 
+                    {"Art/Craft (Acting)", "Disguise"}, {"Firearms (Handgun)", "Firearms (Rifle/Shotgun)"}, {"Law"}, {"Listen"}, 
                     {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"}, {"Spot Hidden"}, {"Any"}
                 };
                 break;
@@ -228,7 +228,7 @@ public class CoCOccupations {
                 this.creditMax = 30;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Fighting (Brawl)"}, {"Firearms Handgun", "Firearms Rifle/Shotgun"}, {"First Aid"}, 
+                    {"Fighting (Brawl)"}, {"Firearms (Handgun)", "Firearms (Rifle/Shotgun)"}, {"First Aid"}, 
                     {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Law"}, {"Psychology"}, {"Spot Hidden"}, {"Drive Auto", "Ride"}
                 };
                 break;
@@ -238,7 +238,7 @@ public class CoCOccupations {
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
                     {"Art/Craft (Photography)"}, {"Disguise"}, {"Law"}, {"Library Use"}, {"Charm", "Fast Talk", "Intimidate", "Persuade"}, {"Psychology"},
-                    {"Spot Hidden"}, {"Computer Use", "Locksmith", "Firearms Handgun"}
+                    {"Spot Hidden"}, {"Computer Use", "Locksmith", "Firearms (Handgun)"}
                 };
                 break;
             case "Professor":
@@ -254,7 +254,7 @@ public class CoCOccupations {
                 this.creditMax = 30;
                 this.skillPoints = characterStats.get("EDU") * 2 + this.checkForHighestSkill(new String[]{"DEX", "STR"}, characterStats) * 2;
                 this.occupationSkills = new String[][]{
-                    {"Climb", "Swim"}, {"Dodge"}, {"Fighting (Brawl)"}, {"Firearms Handgun", "Firearms Rifle/Shotgun", "Firearms Flamethrower", "Firearms Machine Gun", "Firearms Submachine Gun"}, 
+                    {"Climb", "Swim"}, {"Dodge"}, {"Fighting (Brawl)"}, {"Firearms (Handgun)", "Firearms (Rifle/Shotgun)", "Firearms (Flamethrower)", "Firearms (Machine Gun)", "Firearms (Submachine Gun)"}, 
                     {"First Aid", "Mechanical Repair", "Language (Other)"}, {"First Aid", "Mechanical Repair", "Language (Other)"}
                 };
                 break;
@@ -335,7 +335,6 @@ public class CoCOccupations {
             for (int i = 0; i < this.occupationSkills.length; i++) {
                 if (total <= 0) break;
                 if (this.occupationSkills[i][0].equals("Any")) {
-
                     String skill = getRandomCharacterSkill();
                     while (skill.equals("Cthulhu Mythos") || skill.equals("Credit Rating")) {
                         skill = getRandomCharacterSkill();
@@ -343,6 +342,7 @@ public class CoCOccupations {
                     if (total <= 0) {
                         break;
                     }
+                    skill = checkForSpecificSkills(skill) ? generateSkillSpecialization(skill) : skill;
                     String[] replacementSkill = {skill};
                     this.occupationSkills[i] = replacementSkill;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
@@ -353,12 +353,16 @@ public class CoCOccupations {
                     while (skill.equals(this.occupationSkills[i-1][0])) {
                         skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
                     }
+                    skill = checkForSpecificSkills(skill) ? generateSkillSpecialization(skill) : skill;
                     String[] skillArray = {skill};
                     this.occupationSkills[i] = skillArray;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 } else {
                     String skill = this.occupationSkills[i][0];
+                    skill = checkForSpecificSkills(skill) ? generateSkillSpecialization(skill) : skill;
+                    String replacementSkill = skill;
+                    this.occupationSkills[i][0] = replacementSkill;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 }
@@ -374,7 +378,6 @@ public class CoCOccupations {
             this.characterSkills.put(skill, 1);
         }
         int skillPoints = this.characterSkills.get(skill);
-        skill = checkForSpecificSkills(skill) ? generateSkillSpecialization(skill) : skill;
         if (skillPoints + pointsToAdd <= 90) {
             this.characterSkills.put(skill, skillPoints + pointsToAdd);
             return totalPoints - pointsToAdd;
