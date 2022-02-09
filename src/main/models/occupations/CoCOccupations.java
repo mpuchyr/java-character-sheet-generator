@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import src.main.models.helpers.*;
 
 public class CoCOccupations {
     private final String ART_CRAFT_SPEC_FILE = "src/main/models/data/CoCArtCraftSpecializations.txt";
@@ -422,33 +423,21 @@ public class CoCOccupations {
     protected String generateSkillSpecialization(String skill) {
         String temp = skill + " ";
         if (skill.equals("Art/Craft")) {
-            return temp += "(" + this.readRandomLineFromFile(ART_CRAFT_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(ART_CRAFT_SPEC_FILE) + ")";
         } else if (skill.equals("Language (Other)")) {
-            return temp += "(" + this.readRandomLineFromFile(LANGUAGE_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(LANGUAGE_SPEC_FILE) + ")";
         } else if (skill.equals("Pilot")) {
-            return temp += "(" + this.readRandomLineFromFile(PILOT_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(PILOT_SPEC_FILE) + ")";
         } else if (skill.equals("Science")) {
-            return temp += "(" + this.readRandomLineFromFile(SCIENCE_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(SCIENCE_SPEC_FILE) + ")";
         } else if (skill.equals("Survival")) {
-            return temp += "(" + this.readRandomLineFromFile(SURVIVAL_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(SURVIVAL_SPEC_FILE) + ")";
         }
         return temp;
     }
 
-    protected String readRandomLineFromFile(String filename) {
-        String temp = "N/A";
-        Path path = Paths.get(filename);
-        long lines = 0;
-        try {
-            lines = Files.lines(path).count();
-            int randomLine = (int)(Math.random() * lines) + 1;
-            temp = Files.readAllLines(path).get(randomLine);
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return temp;
-    }
+
 
 
 }
