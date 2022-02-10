@@ -13,12 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import src.main.models.helpers.*;
 
 public class CoCOccupations {
-    private final String ART_CRAFT_SPEC_FILE = "src/main/models/data/CoCArtCraftSpecializations.txt";
-    private final String SCIENCE_SPEC_FILE = "src/main/models/data/CoCScienceSpecializations.txt";
-    private final String SURVIVAL_SPEC_FILE = "src/main/models/data/CoCSurvivalSpecializations.txt";
-    private final String LANGUAGE_SPEC_FILE = "src/main/models/data/CoCLanguageSpecializations.txt";
-    private final String PILOT_SPEC_FILE = "src/main/models/data/CoCPilotSpecializations.txt";
-    
+        
     private String name;
     private String[][] occupationSkills;
     private ConcurrentHashMap<String, Integer> characterSkills;
@@ -344,7 +339,7 @@ public class CoCOccupations {
                     if (total <= 0) {
                         break;
                     }
-                    skill = checkForSpecificSkills(skill) ? generateSkillSpecialization(skill) : skill;
+                    skill = checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String[] replacementSkill = {skill};
                     this.occupationSkills[i] = replacementSkill;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
@@ -355,14 +350,14 @@ public class CoCOccupations {
                     while (skill.equals(this.occupationSkills[i-1][0])) {
                         skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
                     }
-                    skill = checkForSpecificSkills(skill) ? generateSkillSpecialization(skill) : skill;
+                    skill = checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String[] skillArray = {skill};
                     this.occupationSkills[i] = skillArray;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 } else {
                     String skill = this.occupationSkills[i][0];
-                    skill = checkForSpecificSkills(skill) ? generateSkillSpecialization(skill) : skill;
+                    skill = checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String replacementSkill = skill;
                     this.occupationSkills[i][0] = replacementSkill;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
@@ -411,21 +406,6 @@ public class CoCOccupations {
         return false;
     }
 
-    protected String generateSkillSpecialization(String skill) {
-        String temp = skill + " ";
-        if (skill.equals("Art/Craft")) {
-            return temp += "(" + Helpers.readRandomLineFromFile(ART_CRAFT_SPEC_FILE) + ")";
-        } else if (skill.equals("Language (Other)")) {
-            return temp += "(" + Helpers.readRandomLineFromFile(LANGUAGE_SPEC_FILE) + ")";
-        } else if (skill.equals("Pilot")) {
-            return temp += "(" + Helpers.readRandomLineFromFile(PILOT_SPEC_FILE) + ")";
-        } else if (skill.equals("Science")) {
-            return temp += "(" + Helpers.readRandomLineFromFile(SCIENCE_SPEC_FILE) + ")";
-        } else if (skill.equals("Survival")) {
-            return temp += "(" + Helpers.readRandomLineFromFile(SURVIVAL_SPEC_FILE) + ")";
-        }
-        return temp;
-    }
 
 
 

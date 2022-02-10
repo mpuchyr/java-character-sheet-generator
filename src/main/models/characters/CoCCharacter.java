@@ -17,11 +17,6 @@ public class CoCCharacter extends GenericCharacter {
     private final String LAST_NAME_FILE = "src/main/models/data/CoCLastNames.txt";
     private final String OCCUPATION_FILE = "src/main/models/data/CoCoccupations.txt";
     private final String SKILLS_FILE = "src/main/models/data/CoCAllSkills.txt";
-    // private final String ART_CRAFT_SPEC_FILE = "src/main/models/data/CoCArtCraftSpecializations.txt";
-    // private final String SCIENCE_SPEC_FILE = "src/main/models/data/CoCScienceSpecializations.txt";
-    // private final String SURVIVAL_SPEC_FILE = "src/main/models/data/CoCSurvivalSpecializations.txt";
-    // private final String LANGUAGE_SPEC_FILE = "src/main/models/data/CoCLanguageSpecializations.txt";
-    // private final String PILOT_SPEC_FILE = "src/main/models/data/CoCPilotSpecializations.txt";
 
 
     public enum CharacterEra {
@@ -373,22 +368,6 @@ public class CoCCharacter extends GenericCharacter {
         }
         return false;
     }
-
-    // protected String generateSkillSpecialization(String skill) {
-    //     String temp = skill + " ";
-    //     if (skill.equals("Art/Craft")) {
-    //         return temp += "(" + Helpers.readRandomLineFromFile(ART_CRAFT_SPEC_FILE) + ")";
-    //     } else if (skill.equals("Language (Other)")) {
-    //         return temp += "(" + Helpers.readRandomLineFromFile(LANGUAGE_SPEC_FILE) + ")";
-    //     } else if (skill.equals("Pilot")) {
-    //         return temp += "(" + Helpers.readRandomLineFromFile(PILOT_SPEC_FILE) + ")";
-    //     } else if (skill.equals("Science")) {
-    //         return temp += "(" + Helpers.readRandomLineFromFile(SCIENCE_SPEC_FILE) + ")";
-    //     } else if (skill.equals("Survival")) {
-    //         return temp += "(" + Helpers.readRandomLineFromFile(SURVIVAL_SPEC_FILE) + ")";
-    //     }
-    //     return temp;
-    // }
 
 
     @Override 
