@@ -9,7 +9,11 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Helpers {
-
+    private static final String ART_CRAFT_SPEC_FILE = "src/main/models/data/CoCArtCraftSpecializations.txt";
+    private static final String SCIENCE_SPEC_FILE = "src/main/models/data/CoCScienceSpecializations.txt";
+    private static final String SURVIVAL_SPEC_FILE = "src/main/models/data/CoCSurvivalSpecializations.txt";
+    private static final String LANGUAGE_SPEC_FILE = "src/main/models/data/CoCLanguageSpecializations.txt";
+    private static final String PILOT_SPEC_FILE = "src/main/models/data/CoCPilotSpecializations.txt";
 
 
     public static String getRandomCharacterSkill(ConcurrentHashMap<String, Integer> characterSkills) {
@@ -20,6 +24,22 @@ public class Helpers {
         int randId = (int)(Math.random() * size);
 
         return keyList.get(randId);
+    }
+
+    public static String generateSkillSpecialization(String skill) {
+        String temp = skill + " ";
+        if (skill.equals("Art/Craft")) {
+            return temp += "(" + readRandomLineFromFile(ART_CRAFT_SPEC_FILE) + ")";
+        } else if (skill.equals("Language (Other)")) {
+            return temp += "(" + readRandomLineFromFile(LANGUAGE_SPEC_FILE) + ")";
+        } else if (skill.equals("Pilot")) {
+            return temp += "(" + readRandomLineFromFile(PILOT_SPEC_FILE) + ")";
+        } else if (skill.equals("Science")) {
+            return temp += "(" + readRandomLineFromFile(SCIENCE_SPEC_FILE) + ")";
+        } else if (skill.equals("Survival")) {
+            return temp += "(" + readRandomLineFromFile(SURVIVAL_SPEC_FILE) + ")";
+        }
+        return temp;
     }
 
 
