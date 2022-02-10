@@ -326,21 +326,11 @@ public class CoCCharacter extends GenericCharacter {
         return validOccupation;
     }
 
-    private String getRandomCharacterSkill() {
-        Set<String> keySet = this.characterSkills.keySet();
-        List<String> keyList = new ArrayList<>(keySet);
-        
-        int size = keyList.size();
-        int randId = (int)(Math.random() * size);
-
-        return keyList.get(randId);
-    }
-
     private void generatePersonalInterestSkills() {
         int total = this.personalInterestPoints;
         while (total > 0) {
             int mod = (int)(Math.random() * (total + 1));
-            String skill = this.getRandomCharacterSkill();
+            String skill = Helpers.getRandomCharacterSkill(this.characterSkills);
             int skillNum = this.characterSkills.get(skill);
             if (skillIsValid(skill)) {
                 if (checkForSpecificSkills(skill)) {

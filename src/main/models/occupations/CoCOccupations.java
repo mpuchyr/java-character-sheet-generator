@@ -299,6 +299,7 @@ public class CoCOccupations {
         return highest;
     }
 
+    // Getters
     public String getName() {
         return this.name;
     }
@@ -336,9 +337,9 @@ public class CoCOccupations {
             for (int i = 0; i < this.occupationSkills.length; i++) {
                 if (total <= 0) break;
                 if (this.occupationSkills[i][0].equals("Any")) {
-                    String skill = getRandomCharacterSkill();
+                    String skill = Helpers.getRandomCharacterSkill(characterSkills);
                     while (skill.equals("Cthulhu Mythos") || skill.equals("Credit Rating")) {
-                        skill = getRandomCharacterSkill();
+                        skill = Helpers.getRandomCharacterSkill(characterSkills);
                     }
                     if (total <= 0) {
                         break;
@@ -393,16 +394,6 @@ public class CoCOccupations {
 
     private int generateRandomNum(int range) {
         return (int)(Math.random() * range) + 1;
-    }
-
-    private String getRandomCharacterSkill() {
-        Set<String> keySet = this.characterSkills.keySet();
-        List<String> keyList = new ArrayList<>(keySet);
-        
-        int size = keyList.size();
-        int randId = (int)(Math.random() * size);
-
-        return keyList.get(randId);
     }
 
     protected boolean checkForSpecificSkills(String skill) {

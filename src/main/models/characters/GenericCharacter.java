@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 
+import src.main.models.helpers.Helpers;
+
 public abstract class GenericCharacter {
    private String name;
    private String sex;
    private int age;
+
 
    
 
