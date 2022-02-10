@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import src.main.models.helpers.*;
 
 import src.main.models.occupations.CoCOccupations;
 
@@ -270,17 +271,17 @@ public class CoCCharacter extends GenericCharacter {
     private String generateOccupation() {
         String occupation;
         if (this.era.equals("Modern")) {
-            occupation = readRandomLineFromFile(OCCUPATION_FILE);
+            occupation = Helpers.readRandomLineFromFile(OCCUPATION_FILE);
             boolean valid = validOccupation(occupation);
             while (!valid) {
-                occupation = readRandomLineFromFile(OCCUPATION_FILE);
+                occupation = Helpers.readRandomLineFromFile(OCCUPATION_FILE);
             }
 
         } else {
-            occupation = readRandomLineFromFile(OCCUPATION_FILE);
+            occupation = Helpers.readRandomLineFromFile(OCCUPATION_FILE);
             boolean valid = validOccupation(occupation);
             while (occupation.equals("Hacker") || !valid) {
-                occupation = readRandomLineFromFile(OCCUPATION_FILE);
+                occupation = Helpers.readRandomLineFromFile(OCCUPATION_FILE);
                 valid = validOccupation(occupation);
             }
         }
@@ -386,15 +387,15 @@ public class CoCCharacter extends GenericCharacter {
     protected String generateSkillSpecialization(String skill) {
         String temp = skill + " ";
         if (skill.equals("Art/Craft")) {
-            return temp += "(" + this.readRandomLineFromFile(ART_CRAFT_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(ART_CRAFT_SPEC_FILE) + ")";
         } else if (skill.equals("Language (Other)")) {
-            return temp += "(" + this.readRandomLineFromFile(LANGUAGE_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(LANGUAGE_SPEC_FILE) + ")";
         } else if (skill.equals("Pilot")) {
-            return temp += "(" + this.readRandomLineFromFile(PILOT_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(PILOT_SPEC_FILE) + ")";
         } else if (skill.equals("Science")) {
-            return temp += "(" + this.readRandomLineFromFile(SCIENCE_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(SCIENCE_SPEC_FILE) + ")";
         } else if (skill.equals("Survival")) {
-            return temp += "(" + this.readRandomLineFromFile(SURVIVAL_SPEC_FILE) + ")";
+            return temp += "(" + Helpers.readRandomLineFromFile(SURVIVAL_SPEC_FILE) + ")";
         }
         return temp;
     }
@@ -409,11 +410,11 @@ public class CoCCharacter extends GenericCharacter {
     protected String generateName(String sex) {
         String temp = sex == "male" ? "John" : "Jane";
         if (sex.equals("male")) {
-            temp = readRandomLineFromFile(MALE_NAME_FILE);
+            temp = Helpers.readRandomLineFromFile(MALE_NAME_FILE);
         } else {
-            temp = readRandomLineFromFile(FEMALE_NAME_FILE);
+            temp = Helpers.readRandomLineFromFile(FEMALE_NAME_FILE);
         }
-        temp += " " + readRandomLineFromFile(LAST_NAME_FILE);
+        temp += " " + Helpers.readRandomLineFromFile(LAST_NAME_FILE);
         return temp;
     }
 
