@@ -328,7 +328,7 @@ public class CoCCharacter extends GenericCharacter {
             String skill = Helpers.getRandomCharacterSkill(this.characterSkills);
             int skillNum = this.characterSkills.get(skill);
             if (skillIsValid(skill)) {
-                if (checkForSpecificSkills(skill)) {
+                if (Helpers.checkForSpecificSkills(skill)) {
                     this.characterSkills.remove(skill);
                     String replacementSkill = Helpers.generateSkillSpecialization(skill);
                     this.characterSkills.put(replacementSkill, 1);
@@ -352,21 +352,6 @@ public class CoCCharacter extends GenericCharacter {
             return false;
         }
         return true;
-    }
-
-    protected boolean checkForSpecificSkills(String skill) {
-        if (skill.equals("Art/Craft")) {
-            return true;
-        } else if (skill.equals("Language (Other)")) {
-            return true;
-        } else if (skill.equals("Pilot")) {
-            return true;
-        } else if (skill.equals("Science")) {
-            return true;
-        } else if (skill.equals("Survival")) {
-            return true;
-        }
-        return false;
     }
 
 

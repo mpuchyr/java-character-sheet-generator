@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import src.main.models.helpers.*;
 
 public class CoCOccupations {
-        
+
     private String name;
     private String[][] occupationSkills;
     private ConcurrentHashMap<String, Integer> characterSkills;
@@ -339,7 +339,7 @@ public class CoCOccupations {
                     if (total <= 0) {
                         break;
                     }
-                    skill = checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
+                    skill = Helpers.checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String[] replacementSkill = {skill};
                     this.occupationSkills[i] = replacementSkill;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
@@ -350,14 +350,14 @@ public class CoCOccupations {
                     while (skill.equals(this.occupationSkills[i-1][0])) {
                         skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
                     }
-                    skill = checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
+                    skill = Helpers.checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String[] skillArray = {skill};
                     this.occupationSkills[i] = skillArray;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 } else {
                     String skill = this.occupationSkills[i][0];
-                    skill = checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
+                    skill = Helpers.checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String replacementSkill = skill;
                     this.occupationSkills[i][0] = replacementSkill;
                     int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
@@ -390,25 +390,5 @@ public class CoCOccupations {
     private int generateRandomNum(int range) {
         return (int)(Math.random() * range) + 1;
     }
-
-    protected boolean checkForSpecificSkills(String skill) {
-        if (skill.equals("Art/Craft")) {
-            return true;
-        } else if (skill.equals("Language (Other)")) {
-            return true;
-        } else if (skill.equals("Pilot")) {
-            return true;
-        } else if (skill.equals("Science")) {
-            return true;
-        } else if (skill.equals("Survival")) {
-            return true;
-        }
-        return false;
-    }
-
-
-
-
-
 
 }

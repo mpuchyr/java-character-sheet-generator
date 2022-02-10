@@ -15,6 +15,20 @@ public class Helpers {
     private static final String LANGUAGE_SPEC_FILE = "src/main/models/data/CoCLanguageSpecializations.txt";
     private static final String PILOT_SPEC_FILE = "src/main/models/data/CoCPilotSpecializations.txt";
 
+    public static boolean checkForSpecificSkills(String skill) {
+        if (skill.equals("Art/Craft")) {
+            return true;
+        } else if (skill.equals("Language (Other)")) {
+            return true;
+        } else if (skill.equals("Pilot")) {
+            return true;
+        } else if (skill.equals("Science")) {
+            return true;
+        } else if (skill.equals("Survival")) {
+            return true;
+        }
+        return false;
+    }
 
     public static String getRandomCharacterSkill(ConcurrentHashMap<String, Integer> characterSkills) {
         Set<String> keySet = characterSkills.keySet();
