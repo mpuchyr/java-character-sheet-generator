@@ -1,10 +1,7 @@
 package src.main.models.characters;
 
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import src.main.models.helpers.*;
 
@@ -30,51 +27,51 @@ public class CoCCharacter extends GenericCharacter {
     public CoCCharacter(CharacterEra characterEra) {
         super();
         this.determineEra(characterEra);
-        this.characterInfo.put("Occupation", generateOccupation());
-        this.generateOccupationSkills();
-        this.generatePersonalInterestSkills();
+        this.initializeCharacter(characterEra, generateOccupation(), true);
     }
 
     public CoCCharacter(CharacterEra characterEra, int age) {
         super(age);
         this.determineEra(characterEra);
-        this.characterInfo.put("Occupation", generateOccupation());
-        this.generatePersonalInterestSkills();
+        this.initializeCharacter(characterEra, generateOccupation(), true);
     }
 
     public CoCCharacter(CharacterEra characterEra, Sex sex) {
         super(sex);
         this.determineEra(characterEra);
-        this.characterInfo.put("Occupation", generateOccupation());
-        this.generatePersonalInterestSkills();
+        this.initializeCharacter(characterEra, generateOccupation(), true);
     }
 
     public CoCCharacter(CharacterEra characterEra, String name, Sex sex) {
         super(name, sex);
         this.determineEra(characterEra);
-        this.characterInfo.put("Occupation", generateOccupation());
-        this.generatePersonalInterestSkills();
+        this.initializeCharacter(characterEra, generateOccupation(), true);
     }
 
     public CoCCharacter(CharacterEra characterEra, int age, Sex sex) {
         super(age, sex);
         this.determineEra(characterEra);
-        this.characterInfo.put("Occupation", generateOccupation());
-        this.generatePersonalInterestSkills();
+        this.initializeCharacter(characterEra, generateOccupation(), true);
     }
 
     public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age) {
         super(name, sex, age);
         this.determineEra(characterEra);
-        this.characterInfo.put("Occupation", generateOccupation());
-        this.generatePersonalInterestSkills();
+        this.initializeCharacter(characterEra, generateOccupation(), true);
     }
 
     public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation) {
         super(name, sex, age);
         this.determineEra(characterEra);
+        this.initializeCharacter(characterEra, occupation, true);
+    }
+
+    private void initializeCharacter(CharacterEra characterEra, String occupation, boolean generateAllSkills) {
         this.characterInfo.put("Occupation", occupation);
-        this.generatePersonalInterestSkills();
+        if (generateAllSkills) {
+            this.generateOccupationSkills();
+            this.generatePersonalInterestSkills();
+        }
     }
 
     protected void determineEra(CharacterEra characterEra) {
