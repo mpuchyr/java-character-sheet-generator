@@ -7,7 +7,7 @@ import src.main.models.characters.GenericCharacter.Sex;
 
 public class Main {
     public static void main(String[] args) {
-        CoCCharacter person = new CoCCharacter(CharacterEra.MODERN);
+        CoCCharacter person = new CoCCharacter(CharacterEra.NINETEENTWENTIES, "Jack Jones", Sex.MALE);
         System.out.println(person);
     }
 }

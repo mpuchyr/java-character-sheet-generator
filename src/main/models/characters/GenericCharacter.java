@@ -47,6 +47,9 @@ public abstract class GenericCharacter {
    }
 
    public GenericCharacter(int age) {
+        if (age <= 0) {
+            throw new IllegalArgumentException("Age must be greater than 0");
+        }
         this.age = age;
         this.sex = sexAsString(generateSex());
         this.name = generateName(this.sex);
@@ -65,16 +68,22 @@ public abstract class GenericCharacter {
    }
 
    public GenericCharacter(int age, Sex sex) {
-       this.sex = sexAsString(sex);
-       this.age = age;
-       this.name = generateName(this.sex);
-       this.initializeHashMaps();
-       this.generateAllStats();
-       this.generateAllSkills();
+       if (age <= 0) {
+           throw new IllegalArgumentException("Age must be greater than 0");
+       }
+        this.sex = sexAsString(sex);
+        this.age = age;
+        this.name = generateName(this.sex);
+        this.initializeHashMaps();
+        this.generateAllStats();
+        this.generateAllSkills();
    }
 
    public GenericCharacter(String name, Sex sex) {
-       this.name = name;
+       if (name == null || name.isBlank()) {
+           throw new IllegalArgumentException("Name cannot be blank/null");
+       }
+        this.name = name;
        this.sex = sexAsString(sex);
        this.age = generateAge();
        this.initializeHashMaps();
@@ -83,6 +92,12 @@ public abstract class GenericCharacter {
    }
    
    public GenericCharacter (String name, Sex sex, int age) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be blank/null");
+        }
+        if (age <= 0) {
+            throw new IllegalArgumentException("Age must be greater than 0");
+        }
         this.name = name;
         this.sex = sexAsString(sex);
         this.age = age;
