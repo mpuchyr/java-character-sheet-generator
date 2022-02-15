@@ -62,6 +62,9 @@ public class CoCCharacter extends GenericCharacter {
 
     public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation) {
         super(name, sex, age);
+        if (occupation == null || occupation.isBlank()) {
+            throw new IllegalArgumentException("Occupation cannot be blank/null");
+        }
         this.determineEra(characterEra);
         this.initializeCharacter(characterEra, occupation, true);
     }

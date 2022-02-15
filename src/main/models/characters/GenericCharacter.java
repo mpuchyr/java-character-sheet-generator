@@ -130,6 +130,9 @@ public abstract class GenericCharacter {
     }
 
     public void setName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be blank/null");
+        }
         this.name = name;
     }
 
@@ -138,6 +141,9 @@ public abstract class GenericCharacter {
     }
 
     public void setSex(String sex) {
+        if (sex == null || sex.isBlank()) {
+            throw new IllegalArgumentException("Sex cannot be blank/null");
+        }
         this.sex = sex;
     }
 
@@ -146,6 +152,9 @@ public abstract class GenericCharacter {
     }
 
     public void setAge(int age) {
+        if (age <= 0) {
+            throw new IllegalArgumentException("Age cannot be less than 0");
+        }
         this.age = age;
     }
 
