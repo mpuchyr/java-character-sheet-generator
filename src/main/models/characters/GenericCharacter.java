@@ -1,25 +1,13 @@
 package src.main.models.characters;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
-
-import src.main.models.helpers.Helpers;
 
 public abstract class GenericCharacter {
    private String name;
    private String sex;
    private int age;
-
-
-   
-
-//    protected LinkedHashMap<String, Integer> characterStats;
-//    protected HashMap<String, String> characterInfo;
-//    protected LinkedHashMap<String, Integer> characterSkills;
 
     ConcurrentHashMap<String, Integer> characterStats;
     ConcurrentHashMap<String, String> characterInfo;
@@ -116,9 +104,6 @@ public abstract class GenericCharacter {
    }
 
    private void initializeHashMaps() {
-        // this.characterStats = new LinkedHashMap<String, Integer>();
-        // this.characterInfo = new HashMap<String, String>();
-        // this.characterSkills = new LinkedHashMap<String, Integer>();
         this.characterStats = new ConcurrentHashMap<String, Integer>();
         this.characterInfo = new ConcurrentHashMap<String, String>();
         this.characterSkills = new ConcurrentHashMap<String, Integer>();
