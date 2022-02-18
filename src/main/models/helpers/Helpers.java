@@ -71,4 +71,8 @@ public class Helpers {
         }
         return temp;
     }
+
+    public static int generateRandomNum(int range) {
+        return (int)(Math.random() * range) + 1;
+    }
 }
