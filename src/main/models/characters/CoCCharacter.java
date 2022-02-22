@@ -86,6 +86,63 @@ public class CoCCharacter extends GenericCharacter {
         }
     }
 
+    // Getters and Setters
+
+    public String getGAME() {
+        return this.GAME;
+    }
+
+
+    public String getMALE_NAME_FILE() {
+        return this.MALE_NAME_FILE;
+    }
+
+
+    public String getFEMALE_NAME_FILE() {
+        return this.FEMALE_NAME_FILE;
+    }
+
+
+    public String getLAST_NAME_FILE() {
+        return this.LAST_NAME_FILE;
+    }
+
+
+    public String getOCCUPATION_FILE() {
+        return this.OCCUPATION_FILE;
+    }
+
+
+    public String getSKILLS_FILE() {
+        return this.SKILLS_FILE;
+    }
+
+
+    public String getEra() {
+        return this.era;
+    }
+
+    public void setEra(String era) {
+        this.era = era;
+    }
+
+    public int getPersonalInterestPoints() {
+        return this.personalInterestPoints;
+    }
+
+    public void setPersonalInterestPoints(int personalInterestPoints) {
+        this.personalInterestPoints = personalInterestPoints;
+    }
+
+    public String getBackground() {
+        return this.background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
+
+
     protected void determineEra(CharacterEra characterEra) {
         switch (characterEra) {
             case NINETEENTWENTIES:
