@@ -3,6 +3,8 @@ package src.main.models.characters;
 import java.io.FileInputStream;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
+
+import src.main.models.character_backgrounds.CoCCharacterBackground;
 import src.main.models.helpers.*;
 
 import src.main.models.occupations.CoCOccupations;
@@ -23,57 +25,64 @@ public class CoCCharacter extends GenericCharacter {
 
     private String era;
     private int personalInterestPoints;
+    private String background;
 
-    public CoCCharacter(CharacterEra characterEra) {
+    public CoCCharacter(CharacterEra characterEra, boolean generateBackground) {
         super();
         this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true);
+        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
     }
 
-    public CoCCharacter(CharacterEra characterEra, int age) {
+    public CoCCharacter(CharacterEra characterEra, int age, boolean generateBackground) {
         super(age);
         this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true);
+        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
     }
 
-    public CoCCharacter(CharacterEra characterEra, Sex sex) {
+    public CoCCharacter(CharacterEra characterEra, Sex sex, boolean generateBackground) {
         super(sex);
         this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true);
+        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
     }
 
-    public CoCCharacter(CharacterEra characterEra, String name, Sex sex) {
+    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, boolean generateBackground) {
         super(name, sex);
         this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true);
+        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
     }
 
-    public CoCCharacter(CharacterEra characterEra, int age, Sex sex) {
+    public CoCCharacter(CharacterEra characterEra, int age, Sex sex, boolean generateBackground) {
         super(age, sex);
         this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true);
+        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
     }
 
-    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age) {
+    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, boolean generateBackground) {
         super(name, sex, age);
         this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true);
+        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
     }
 
-    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation) {
+    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation, boolean generateBackground) {
         super(name, sex, age);
         if (occupation == null || occupation.isBlank()) {
             throw new IllegalArgumentException("Occupation cannot be blank/null");
         }
         this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, occupation, true);
+        this.initializeCharacter(characterEra, occupation, true, generateBackground);
     }
 
-    private void initializeCharacter(CharacterEra characterEra, String occupation, boolean generateAllSkills) {
+    private void initializeCharacter(CharacterEra characterEra, String occupation, boolean generateAllSkills, boolean generateBackground) {
         this.characterInfo.put("Occupation", occupation);
         if (generateAllSkills) {
             this.generateOccupationSkills();
             this.generatePersonalInterestSkills();
+        }
+        if (generateBackground) {
+            CoCCharacterBackground characterbackGround = new CoCCharacterBackground();
+            this.background = characterbackGround.toString();
+        } else {
+            background = "";
         }
     }
 
@@ -370,6 +379,12 @@ public class CoCCharacter extends GenericCharacter {
         }
         temp += " " + Helpers.readRandomLineFromFile(LAST_NAME_FILE);
         return temp;
+    }
+
+    public String toString() {
+        return super.toString() + "\n" +
+            "-- Character Background --\n" +
+            this.background;
     }
 
 }

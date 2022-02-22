@@ -8,10 +8,10 @@ import src.main.models.characters.GenericCharacter.Sex;
 
 public class Main {
     public static void main(String[] args) {
-        // CoCCharacter person = new CoCCharacter(CharacterEra.NINETEENTWENTIES, "Jack Jones", Sex.MALE);
-        // System.out.println(person);
+        CoCCharacter person = new CoCCharacter(CharacterEra.NINETEENTWENTIES, true);
+        System.out.println(person);
 
-        CoCCharacterBackground background = new CoCCharacterBackground();
-        System.out.println(background);
+        // CoCCharacterBackground background = new CoCCharacterBackground();
+        // System.out.println(background);
     }
 }
