@@ -72,6 +72,7 @@ public class CoCCharacter extends GenericCharacter {
         this.initializeCharacter(characterEra, occupation, true, generateBackground);
     }
 
+    // Includes methods that every constructor uses, regardless of arguments given to constructor
     private void initializeCharacter(CharacterEra characterEra, String occupation, boolean generateAllSkills, boolean generateBackground) {
         this.characterInfo.put("Occupation", occupation);
         if (generateAllSkills) {
@@ -142,7 +143,7 @@ public class CoCCharacter extends GenericCharacter {
         this.background = background;
     }
 
-
+    // Removes skills from the characterskills array based on character's era
     protected void determineEra(CharacterEra characterEra) {
         switch (characterEra) {
             case NINETEENTWENTIES:
@@ -156,6 +157,7 @@ public class CoCCharacter extends GenericCharacter {
         }
     }
 
+    // Generates all the basic stats of a character
     @Override
     protected void generateAllStats() {
         this.characterStats.put("STR", generateStatWithModifier(6,3, Modifier.MULTIPLY, 5));
@@ -177,6 +179,7 @@ public class CoCCharacter extends GenericCharacter {
         
     }
 
+    // Reads a file of character skills and adds them to the characterstats array
     @Override
     protected void generateAllSkills() {
         try {
@@ -194,17 +197,20 @@ public class CoCCharacter extends GenericCharacter {
         }  
     }
 
+    // Uses character's CON and SIZ to determine HP 
     @Override
     protected void generateHitPoints() {
         int hp = (this.characterStats.get("CON") + this.characterStats.get("SIZ")) / 10;
         this.characterStats.put("HP", hp);
     }
 
+    // Uses character's POW stat to determine magic points
     protected void generateMagicPoints() {
         int mp = this.characterStats.get("POW") / 5;
         this.characterStats.put("MP", mp);
     }
 
+    // Generates damage bonus and build based on SIZ and STR stats
     protected void generateDamageBonusAndBuild() {
         int total = this.characterStats.get("STR") + this.characterStats.get("SIZ");
         String bonus;
@@ -232,6 +238,7 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("Build", build);
     }
 
+    // Determines character's move stat based on multiple factors
     private void generateMove() {
         int move;
         int str = this.characterStats.get("STR");
@@ -262,6 +269,7 @@ public class CoCCharacter extends GenericCharacter {
         this.characterStats.put("MOV", move);
     }
 
+    // Modifies character's stats based on the character's age
     private void ageModifier(int age) {
         if (age >= 15 && age <= 19) {
             int total = 5;
@@ -290,6 +298,8 @@ public class CoCCharacter extends GenericCharacter {
         }
     }
 
+
+    // Makes a number of checks to determine if character's EDU stat increases
     private void eduIncrease(int numOfChecks) {
         for (int i = 0; i < numOfChecks; i++) {
             boolean eduCheckPass = this.statCheck(this.characterStats, "EDU");
@@ -300,6 +310,8 @@ public class CoCCharacter extends GenericCharacter {
         }
     }
 
+
+    // Reduces a character's APP and randomly reduces STR, CON, and DEX stats
     private void statReduction(int statReduction, int appReduction) {
         this.characterStats.put("APP", this.characterStats.get("APP") - appReduction);
         int total = statReduction;
@@ -323,12 +335,14 @@ public class CoCCharacter extends GenericCharacter {
         
     }
 
+    // Checks if a character passes a check based on a specific character stat
     private boolean statCheck(ConcurrentHashMap<String, Integer> stat, String statToCheck) {
         int roll = (int)(Math.random() * 100) + 1;
         boolean pass = roll <= stat.get(statToCheck);
         return pass;
     }
 
+    // Randomly chooses a character's occupation
     private String generateOccupation() {
         String occupation;
         if (this.era.equals("Modern")) {
@@ -350,12 +364,15 @@ public class CoCCharacter extends GenericCharacter {
         
     }
 
+    // Uses CoCOccupations to generate a character's occupation skills
     private void generateOccupationSkills() {
         CoCOccupations occupation = new CoCOccupations(this.characterInfo.get("Occupation"), this.characterStats, this.characterSkills);
         this.characterSkills = occupation.getCharacterSkills();
         
     }
 
+
+    // Checks if an occupation is valid based on character's age
     private boolean validOccupation(String occupation) {
         boolean validOccupation = true;
         if (this.getAge() < 20) {
@@ -387,6 +404,7 @@ public class CoCCharacter extends GenericCharacter {
         return validOccupation;
     }
 
+    // Goes through and randomly determins a character's personal interest skills
     private void generatePersonalInterestSkills() {
         int total = this.personalInterestPoints;
         while (total > 0) {
@@ -413,6 +431,7 @@ public class CoCCharacter extends GenericCharacter {
         }
     }
 
+    // Checks that a skill is not Cthulhu Mythos
     protected boolean skillIsValid(String skill) {
         if (skill.equals("Cthulhu Mythos")) {
             return false;
