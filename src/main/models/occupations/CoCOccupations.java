@@ -339,7 +339,7 @@ public class CoCOccupations {
 
                 } else if (this.occupationSkills[i].length > 1) {
                     String skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
-                    while (skill.equals(this.occupationSkills[i-1][0])) {
+                    while (skill.equals(this.occupationSkills[i][0])) {
                         skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
                     }
                     skill = Helpers.checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
