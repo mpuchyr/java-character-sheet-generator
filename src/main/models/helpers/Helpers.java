@@ -63,7 +63,7 @@ public class Helpers {
         long lines = 0;
         try {
             lines = Files.lines(path).count();
-            int randomLine = (int)(Math.random() * lines) + 1;
+            int randomLine = (int)(Math.random() * lines);
             temp = Files.readAllLines(path).get(randomLine);
 
         } catch (Exception e) {
