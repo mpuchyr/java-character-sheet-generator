@@ -2,21 +2,16 @@ package src.main;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import src.main.models.character_backgrounds.CoCCharacterBackground;
 import src.main.models.characters.CoCCharacter;
-import src.main.models.characters.GenericCharacter;
 import src.main.models.characters.CoCCharacter.CharacterEra;
-import src.main.models.characters.GenericCharacter.Sex;
+
 
 public class Main implements ActionListener {
 
@@ -25,11 +20,6 @@ public class Main implements ActionListener {
     public static JScrollPane scroll;
 
     public static void main(String[] args) {
-        // CoCCharacter person = new CoCCharacter(CharacterEra.NINETEENTWENTIES, true);
-        // System.out.println(person);
-
-        // CoCCharacterBackground background = new CoCCharacterBackground();
-        // System.out.println(background);
 
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
