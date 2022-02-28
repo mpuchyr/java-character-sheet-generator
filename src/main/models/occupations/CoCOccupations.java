@@ -334,25 +334,25 @@ public class CoCOccupations {
                     skill = Helpers.checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String[] replacementSkill = {skill};
                     this.occupationSkills[i] = replacementSkill;
-                    int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
+                    int pointsToAdd = total >= 50 ? Helpers.generateRandomNum(50) : Helpers.generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
 
                 } else if (this.occupationSkills[i].length > 1) {
-                    String skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
+                    String skill = this.occupationSkills[i][Helpers.generateRandomNum(this.occupationSkills[i].length - 1)];
                     while (skill.equals(this.occupationSkills[i][0])) {
-                        skill = this.occupationSkills[i][generateRandomNum(this.occupationSkills[i].length - 1)];
+                        skill = this.occupationSkills[i][Helpers.generateRandomNum(this.occupationSkills[i].length - 1)];
                     }
                     skill = Helpers.checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String[] skillArray = {skill};
                     this.occupationSkills[i] = skillArray;
-                    int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
+                    int pointsToAdd = total >= 50 ? Helpers.generateRandomNum(50) : Helpers.generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 } else {
                     String skill = this.occupationSkills[i][0];
                     skill = Helpers.checkForSpecificSkills(skill) ? Helpers.generateSkillSpecialization(skill) : skill;
                     String replacementSkill = skill;
                     this.occupationSkills[i][0] = replacementSkill;
-                    int pointsToAdd = total >= 50 ? generateRandomNum(50) : generateRandomNum(total);
+                    int pointsToAdd = total >= 50 ? Helpers.generateRandomNum(50) : Helpers.generateRandomNum(total);
                     total = addPointsToSkill(skill, pointsToAdd, total);
                 }
                 if (total > 0 && i == this.occupationSkills.length) {
@@ -379,8 +379,5 @@ public class CoCOccupations {
 
     }
 
-    private int generateRandomNum(int range) {
-        return (int)(Math.random() * range) + 1;
-    }
 
 }
