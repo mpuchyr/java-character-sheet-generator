@@ -30,6 +30,8 @@ public class Main implements ActionListener {
     public static JRadioButton femaleButton;
     public static JRadioButton anyGenderButton;
     public static Sex characterSex = Sex.MALE;
+    public static boolean randomCharacterGender = true;
+
 
     public static void main(String[] args) {
 
@@ -56,11 +58,11 @@ public class Main implements ActionListener {
         panel.add(nameField);
 
         maleButton = new JRadioButton("Male");
-        maleButton.setSelected(true);
         maleButton.setBounds(10, 75, 75, 25);
         maleButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 characterSex = Sex.MALE;
+                randomCharacterGender = false;
             }
         });
 
@@ -69,15 +71,16 @@ public class Main implements ActionListener {
         femaleButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 characterSex = Sex.FEMALE;
+                randomCharacterGender = false;
             }
         });
 
         anyGenderButton = new JRadioButton("Any");
+        anyGenderButton.setSelected(true);
         anyGenderButton.setBounds(10, 125, 75, 25);
         anyGenderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int num = Helpers.generateRandomNum(2);
-                characterSex = num == 1 ? Sex.MALE : Sex.FEMALE;
+                randomCharacterGender = true;
             }
         });
 
@@ -105,10 +108,13 @@ public class Main implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String charName = nameField.getText();
         
-        if (charName.isBlank() || charName == null) {
+        if ((charName.isBlank() || charName == null) && randomCharacterGender) {
             CoCCharacter cocCharacter = new CoCCharacter(CharacterEra.NINETEENTWENTIES, true);
             cocCharacterInfo.setText(cocCharacter.toString());
-        } else {
+        } else if ((charName.isBlank() || charName == null) && !randomCharacterGender){
+            CoCCharacter cocCharacter = new CoCCharacter(CharacterEra.NINETEENTWENTIES, characterSex, true);
+            cocCharacterInfo.setText(cocCharacter.toString());
+        }else {
             CoCCharacter cocCharacter = new CoCCharacter(CharacterEra.NINETEENTWENTIES, charName, characterSex, true);
             cocCharacterInfo.setText(cocCharacter.toString());
         }
