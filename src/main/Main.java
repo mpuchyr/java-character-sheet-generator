@@ -13,6 +13,7 @@ import javax.swing.event.SwingPropertyChangeSupport;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.chrono.Era;
 
 import src.main.models.characters.CoCCharacter;
 import src.main.models.characters.CoCCharacter.CharacterEra;
@@ -31,6 +32,10 @@ public class Main implements ActionListener {
     public static JRadioButton anyGenderButton;
     public static Sex characterSex = Sex.MALE;
     public static boolean randomCharacterGender = true;
+    public static JRadioButton era1920s;
+    public static JRadioButton eraModern;
+    public static CharacterEra characterEra = CharacterEra.NINETEENTWENTIES;
+
 
 
     public static void main(String[] args) {
@@ -94,6 +99,32 @@ public class Main implements ActionListener {
         panel.add(femaleButton);
         panel.add(anyGenderButton);
 
+        era1920s = new JRadioButton("1920s");
+        era1920s.setSelected(true);
+        era1920s.setBounds(10, 150, 75, 25);
+        era1920s.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                characterEra = CharacterEra.NINETEENTWENTIES;
+            }
+        });
+
+        eraModern = new JRadioButton("Modern");
+        eraModern.setBounds(10, 175, 75, 25);
+        eraModern.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                characterEra = CharacterEra.MODERN;
+            }
+        });
+
+        ButtonGroup eraGroup = new ButtonGroup();
+        eraGroup.add(era1920s);
+        eraGroup.add(eraModern);
+
+        panel.add(era1920s);
+        panel.add(eraModern);
+
+
+
         cocCharacterInfo = new JTextArea("");
         scroll = new JScrollPane(cocCharacterInfo);
         scroll.setBounds(300, 50, 500, 300);
@@ -109,13 +140,13 @@ public class Main implements ActionListener {
         String charName = nameField.getText();
         
         if ((charName.isBlank() || charName == null) && randomCharacterGender) {
-            CoCCharacter cocCharacter = new CoCCharacter(CharacterEra.NINETEENTWENTIES, true);
+            CoCCharacter cocCharacter = new CoCCharacter(characterEra, true);
             cocCharacterInfo.setText(cocCharacter.toString());
         } else if ((charName.isBlank() || charName == null) && !randomCharacterGender){
-            CoCCharacter cocCharacter = new CoCCharacter(CharacterEra.NINETEENTWENTIES, characterSex, true);
+            CoCCharacter cocCharacter = new CoCCharacter(characterEra, characterSex, true);
             cocCharacterInfo.setText(cocCharacter.toString());
         }else {
-            CoCCharacter cocCharacter = new CoCCharacter(CharacterEra.NINETEENTWENTIES, charName, characterSex, true);
+            CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, characterSex, true);
             cocCharacterInfo.setText(cocCharacter.toString());
         }
 
