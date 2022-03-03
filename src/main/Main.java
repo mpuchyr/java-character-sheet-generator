@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import src.main.models.characters.CoCCharacter;
 import src.main.models.characters.CoCCharacter.CharacterEra;
 import src.main.models.characters.GenericCharacter.Sex;
+import src.main.models.helpers.Helpers;
 
 
 public class Main implements ActionListener {
@@ -27,6 +28,7 @@ public class Main implements ActionListener {
     public static JTextField nameField;
     public static JRadioButton maleButton;
     public static JRadioButton femaleButton;
+    public static JRadioButton anyGenderButton;
     public static Sex characterSex = Sex.MALE;
 
     public static void main(String[] args) {
@@ -70,13 +72,24 @@ public class Main implements ActionListener {
             }
         });
 
+        anyGenderButton = new JRadioButton("Any");
+        anyGenderButton.setBounds(10, 125, 75, 25);
+        anyGenderButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int num = Helpers.generateRandomNum(2);
+                characterSex = num == 1 ? Sex.MALE : Sex.FEMALE;
+            }
+        });
+
         ButtonGroup group = new ButtonGroup();
         group.add(maleButton);
         group.add(femaleButton);
+        group.add(anyGenderButton);
 
 
         panel.add(maleButton);
         panel.add(femaleButton);
+        panel.add(anyGenderButton);
 
         cocCharacterInfo = new JTextArea("");
         scroll = new JScrollPane(cocCharacterInfo);
