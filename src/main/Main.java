@@ -23,6 +23,8 @@ import src.main.models.helpers.Helpers;
 
 public class Main implements ActionListener {
 
+    private static JPanel panel;
+
     public static JButton generateCoCCharacterButton;
     public static JTextArea cocCharacterInfo;
     public static JScrollPane scroll;
@@ -41,7 +43,7 @@ public class Main implements ActionListener {
     public static void main(String[] args) {
 
         JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         
         frame.setSize(1200, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +64,37 @@ public class Main implements ActionListener {
         nameField.setBounds(50, 50, 200, 25);
         panel.add(nameField);
 
+        displayCharacterGenderOptions();
+        displayCharacterEraOptions();
+
+        cocCharacterInfo = new JTextArea("");
+        scroll = new JScrollPane(cocCharacterInfo);
+        scroll.setBounds(300, 50, 500, 300);
+        panel.add(scroll);
+
+
+        frame.setVisible(true);
+        
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String charName = nameField.getText();
+        
+        if ((charName.isBlank() || charName == null) && randomCharacterGender) {
+            CoCCharacter cocCharacter = new CoCCharacter(characterEra, true);
+            cocCharacterInfo.setText(cocCharacter.toString());
+        } else if ((charName.isBlank() || charName == null) && !randomCharacterGender){
+            CoCCharacter cocCharacter = new CoCCharacter(characterEra, characterSex, true);
+            cocCharacterInfo.setText(cocCharacter.toString());
+        }else {
+            CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, characterSex, true);
+            cocCharacterInfo.setText(cocCharacter.toString());
+        }
+
+    }
+
+    private static void displayCharacterGenderOptions() {
         maleButton = new JRadioButton("Male");
         maleButton.setBounds(10, 75, 75, 25);
         maleButton.addActionListener(new ActionListener() {
@@ -98,7 +131,9 @@ public class Main implements ActionListener {
         panel.add(maleButton);
         panel.add(femaleButton);
         panel.add(anyGenderButton);
+    }
 
+    private static void displayCharacterEraOptions() {
         era1920s = new JRadioButton("1920s");
         era1920s.setSelected(true);
         era1920s.setBounds(10, 150, 75, 25);
@@ -122,34 +157,6 @@ public class Main implements ActionListener {
 
         panel.add(era1920s);
         panel.add(eraModern);
-
-
-
-        cocCharacterInfo = new JTextArea("");
-        scroll = new JScrollPane(cocCharacterInfo);
-        scroll.setBounds(300, 50, 500, 300);
-        panel.add(scroll);
-
-
-        frame.setVisible(true);
-        
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String charName = nameField.getText();
-        
-        if ((charName.isBlank() || charName == null) && randomCharacterGender) {
-            CoCCharacter cocCharacter = new CoCCharacter(characterEra, true);
-            cocCharacterInfo.setText(cocCharacter.toString());
-        } else if ((charName.isBlank() || charName == null) && !randomCharacterGender){
-            CoCCharacter cocCharacter = new CoCCharacter(characterEra, characterSex, true);
-            cocCharacterInfo.setText(cocCharacter.toString());
-        }else {
-            CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, characterSex, true);
-            cocCharacterInfo.setText(cocCharacter.toString());
-        }
-
     }
 
 
