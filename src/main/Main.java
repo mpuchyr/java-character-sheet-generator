@@ -56,14 +56,8 @@ public class Main implements ActionListener {
         generateCoCCharacterButton.addActionListener(new Main());
         panel.add(generateCoCCharacterButton);
 
-        JLabel nameLabel = new JLabel("Name");
-        nameLabel.setBounds(10, 50, 50, 25);
-        panel.add(nameLabel);
 
-        nameField = new JTextField();
-        nameField.setBounds(50, 50, 200, 25);
-        panel.add(nameField);
-
+        displayCharacterNameGroup();
         displayCharacterGenderOptions();
         displayCharacterEraOptions();
 
@@ -92,6 +86,16 @@ public class Main implements ActionListener {
             cocCharacterInfo.setText(cocCharacter.toString());
         }
 
+    }
+
+    private static void displayCharacterNameGroup() {
+        JLabel nameLabel = new JLabel("Name");
+        nameLabel.setBounds(10, 50, 50, 25);
+        panel.add(nameLabel);
+
+        nameField = new JTextField();
+        nameField.setBounds(50, 50, 200, 25);
+        panel.add(nameField);
     }
 
     private static void displayCharacterGenderOptions() {
