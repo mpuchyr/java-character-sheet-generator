@@ -37,6 +37,7 @@ public class Main implements ActionListener {
     public static JRadioButton era1920s;
     public static JRadioButton eraModern;
     public static CharacterEra characterEra = CharacterEra.NINETEENTWENTIES;
+    public static JTextField ageField;
 
 
 
@@ -60,6 +61,7 @@ public class Main implements ActionListener {
         displayCharacterNameGroup();
         displayCharacterGenderOptions();
         displayCharacterEraOptions();
+        displayCharacterAgeSelection();
 
         cocCharacterInfo = new JTextArea("");
         scroll = new JScrollPane(cocCharacterInfo);
@@ -74,6 +76,7 @@ public class Main implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String charName = nameField.getText();
+        int charAge = Integer.parseInt(ageField.getText());
         
         if ((charName.isBlank() || charName == null) && randomCharacterGender) {
             CoCCharacter cocCharacter = new CoCCharacter(characterEra, true);
@@ -163,5 +166,14 @@ public class Main implements ActionListener {
         panel.add(eraModern);
     }
 
+    private static void displayCharacterAgeSelection() {
+        JLabel ageLabel = new JLabel("Age");
+        ageLabel.setBounds(10, 200, 50, 25);
+        panel.add(ageLabel);
+
+        ageField = new JTextField();
+        ageField.setBounds(50, 200, 50, 25);
+        panel.add(ageField);
+    }
 
 }
