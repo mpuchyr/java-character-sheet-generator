@@ -2,6 +2,7 @@ package src.main;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,9 +12,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.SwingPropertyChangeSupport;
 
+import org.junit.platform.engine.support.config.PrefixedConfigurationParameters;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import java.time.chrono.Era;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import src.main.models.characters.CoCCharacter;
 import src.main.models.characters.CoCCharacter.CharacterEra;
@@ -38,8 +44,7 @@ public class Main implements ActionListener {
     public static JRadioButton eraModern;
     public static CharacterEra characterEra = CharacterEra.NINETEENTWENTIES;
     public static JTextField ageField;
-
-
+    public static JComboBox<String> professionChoice;
 
     public static void main(String[] args) {
 
@@ -62,6 +67,7 @@ public class Main implements ActionListener {
         displayCharacterGenderOptions();
         displayCharacterEraOptions();
         displayCharacterAgeSelection();
+        displayProfessionOptions();
 
         cocCharacterInfo = new JTextArea("");
         scroll = new JScrollPane(cocCharacterInfo);
@@ -176,4 +182,29 @@ public class Main implements ActionListener {
         panel.add(ageField);
     }
 
+    private static void displayProfessionOptions() {
+        ArrayList<String> professionOptions = new ArrayList<String>();
+        professionOptions.add("none");
+
+        try {
+            FileInputStream fis = new FileInputStream("src/main/models/data/CoCoccupations.txt");
+            Scanner scan = new Scanner(fis);
+            while(scan.hasNextLine()) {
+                String line = scan.nextLine();
+                professionOptions.add(line);
+            }
+            String[] professionOptionsArray = new String[professionOptions.size()];
+            for (int i = 0; i < professionOptions.size(); i++) {
+                professionOptionsArray[i] = professionOptions.get(i);
+            }
+            professionChoice = new JComboBox<>(professionOptionsArray);
+            professionChoice.setBounds(10, 225, 150, 25);
+            panel.add(professionChoice);
+            scan.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }  
+
+        
+    }
 }
