@@ -84,6 +84,8 @@ public class Main implements ActionListener {
         String charName = nameField.getText();
         String ageFieldValue = ageField.getText();
         int charAge;
+        String chosenProfession = (String)professionChoice.getSelectedItem();
+        System.out.println(chosenProfession);
 
         if (!(ageFieldValue.isBlank() || ageField == null)) {
             charAge = Integer.parseInt(ageFieldValue);
