@@ -82,7 +82,12 @@ public class Main implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String charName = nameField.getText();
-        int charAge = Integer.parseInt(ageField.getText());
+        String ageFieldValue = ageField.getText();
+        int charAge;
+
+        if (!(ageFieldValue.isBlank() || ageField == null)) {
+            charAge = Integer.parseInt(ageFieldValue);
+        }
         
         if ((charName.isBlank() || charName == null) && randomCharacterGender) {
             CoCCharacter cocCharacter = new CoCCharacter(characterEra, true);
@@ -200,6 +205,7 @@ public class Main implements ActionListener {
             professionChoice = new JComboBox<>(professionOptionsArray);
             professionChoice.setBounds(10, 225, 150, 25);
             panel.add(professionChoice);
+            professionChoice.setSelectedIndex(0);
             scan.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
