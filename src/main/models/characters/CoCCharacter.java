@@ -27,6 +27,17 @@ public class CoCCharacter extends GenericCharacter {
     private int personalInterestPoints;
     private String background;
 
+    public CoCCharacter (CharacterEra characterEra, String name, int age, Sex sex, String occupation, boolean generateAllSkills, boolean generateBackground) {
+        super(name, sex, age);
+        this.determineEra(characterEra);
+        if (occupation == null || occupation.isBlank() || occupation == "none") {
+            this.initializeCharacter(characterEra, generateOccupation(), generateAllSkills, generateBackground);
+        } else {
+            this.initializeCharacter(characterEra, occupation, generateAllSkills, generateBackground);
+        }
+        
+    }
+
     public CoCCharacter(CharacterEra characterEra, boolean generateBackground) {
         super();
         this.determineEra(characterEra);
@@ -63,14 +74,14 @@ public class CoCCharacter extends GenericCharacter {
         this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
     }
 
-    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation, boolean generateBackground) {
-        super(name, sex, age);
-        if (occupation == null || occupation.isBlank()) {
-            throw new IllegalArgumentException("Occupation cannot be blank/null");
-        }
-        this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, occupation, true, generateBackground);
-    }
+    // public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation, boolean generateBackground) {
+    //     super(name, sex, age);
+    //     if (occupation == null || occupation.isBlank()) {
+    //         throw new IllegalArgumentException("Occupation cannot be blank/null");
+    //     }
+    //     this.determineEra(characterEra);
+    //     this.initializeCharacter(characterEra, occupation, true, generateBackground);
+    // }
 
     // Includes methods that every constructor uses, regardless of arguments given to constructor
     private void initializeCharacter(CharacterEra characterEra, String occupation, boolean generateAllSkills, boolean generateBackground) {

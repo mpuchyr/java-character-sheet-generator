@@ -15,7 +15,8 @@ public abstract class GenericCharacter {
 
    public enum Sex {
        MALE,
-       FEMALE
+       FEMALE,
+       ANY
    }
 
    public enum Modifier {
@@ -79,16 +80,25 @@ public abstract class GenericCharacter {
        this.generateAllSkills();
    }
    
-   public GenericCharacter (String name, Sex sex, int age) {
+   public GenericCharacter (String name, Sex sex, Integer age) {
+        if (sex.equals(Sex.ANY)) {
+            this.sex = sexAsString(this.generateSex());
+        } else {
+            this.sex = sexAsString(sex);
+        }
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be blank/null");
+            // throw new IllegalArgumentException("Name cannot be blank/null");
+            this.name = this.generateName(this.sex);
+        } else {
+            this.name = name;
         }
-        if (age <= 0) {
-            throw new IllegalArgumentException("Age must be greater than 0");
+        if (age <= 0 || age == null) {
+            // throw new IllegalArgumentException("Age must be greater than 0");
+            this.age = this.generateAge();
+        } else {
+            this.age = age;
         }
-        this.name = name;
-        this.sex = sexAsString(sex);
-        this.age = age;
+
         this.initializeHashMaps();
         this.generateAllStats();
         this.generateAllSkills();
