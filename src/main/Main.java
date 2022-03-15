@@ -83,24 +83,27 @@ public class Main implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String charName = nameField.getText();
         String ageFieldValue = ageField.getText();
-        int charAge;
+        int charAge = 0;
         String chosenProfession = (String)professionChoice.getSelectedItem();
-        System.out.println(chosenProfession);
+
 
         if (!(ageFieldValue.isBlank() || ageField == null)) {
             charAge = Integer.parseInt(ageFieldValue);
         }
+
+        CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true);
+        cocCharacterInfo.setText(cocCharacter.toString());
         
-        if ((charName.isBlank() || charName == null) && randomCharacterGender) {
-            CoCCharacter cocCharacter = new CoCCharacter(characterEra, true);
-            cocCharacterInfo.setText(cocCharacter.toString());
-        } else if ((charName.isBlank() || charName == null) && !randomCharacterGender){
-            CoCCharacter cocCharacter = new CoCCharacter(characterEra, characterSex, true);
-            cocCharacterInfo.setText(cocCharacter.toString());
-        }else {
-            CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, characterSex, true);
-            cocCharacterInfo.setText(cocCharacter.toString());
-        }
+        // if ((charName.isBlank() || charName == null) && randomCharacterGender) {
+        //     CoCCharacter cocCharacter = new CoCCharacter(characterEra, true);
+        //     cocCharacterInfo.setText(cocCharacter.toString());
+        // } else if ((charName.isBlank() || charName == null) && !randomCharacterGender){
+        //     CoCCharacter cocCharacter = new CoCCharacter(characterEra, characterSex, true);
+        //     cocCharacterInfo.setText(cocCharacter.toString());
+        // }else {
+        //     CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, characterSex, true);
+        //     cocCharacterInfo.setText(cocCharacter.toString());
+        // }
 
     }
 
