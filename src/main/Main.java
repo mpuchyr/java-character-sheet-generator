@@ -38,7 +38,7 @@ public class Main implements ActionListener {
     public static JRadioButton maleButton;
     public static JRadioButton femaleButton;
     public static JRadioButton anyGenderButton;
-    public static Sex characterSex = Sex.MALE;
+    public static Sex characterSex = Sex.ANY;
     public static boolean randomCharacterGender = true;
     public static JRadioButton era1920s;
     public static JRadioButton eraModern;

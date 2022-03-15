@@ -173,6 +173,9 @@ public abstract class GenericCharacter {
             case FEMALE: 
                 temp = "female";
                 break;
+            case ANY:
+                temp = sexAsString(generateSex());
+                break;
         }
         return temp;
     }
