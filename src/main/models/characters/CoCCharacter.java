@@ -38,41 +38,41 @@ public class CoCCharacter extends GenericCharacter {
         
     }
 
-    public CoCCharacter(CharacterEra characterEra, boolean generateBackground) {
-        super();
-        this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
-    }
+    // public CoCCharacter(CharacterEra characterEra, boolean generateBackground) {
+    //     super();
+    //     this.determineEra(characterEra);
+    //     this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
+    // }
 
-    public CoCCharacter(CharacterEra characterEra, int age, boolean generateBackground) {
-        super(age);
-        this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
-    }
+    // public CoCCharacter(CharacterEra characterEra, int age, boolean generateBackground) {
+    //     super(age);
+    //     this.determineEra(characterEra);
+    //     this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
+    // }
 
-    public CoCCharacter(CharacterEra characterEra, Sex sex, boolean generateBackground) {
-        super(sex);
-        this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
-    }
+    // public CoCCharacter(CharacterEra characterEra, Sex sex, boolean generateBackground) {
+    //     super(sex);
+    //     this.determineEra(characterEra);
+    //     this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
+    // }
 
-    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, boolean generateBackground) {
-        super(name, sex);
-        this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
-    }
+    // public CoCCharacter(CharacterEra characterEra, String name, Sex sex, boolean generateBackground) {
+    //     super(name, sex);
+    //     this.determineEra(characterEra);
+    //     this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
+    // }
 
-    public CoCCharacter(CharacterEra characterEra, int age, Sex sex, boolean generateBackground) {
-        super(age, sex);
-        this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
-    }
+    // public CoCCharacter(CharacterEra characterEra, int age, Sex sex, boolean generateBackground) {
+    //     super(age, sex);
+    //     this.determineEra(characterEra);
+    //     this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
+    // }
 
-    public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, boolean generateBackground) {
-        super(name, sex, age);
-        this.determineEra(characterEra);
-        this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
-    }
+    // public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, boolean generateBackground) {
+    //     super(name, sex, age);
+    //     this.determineEra(characterEra);
+    //     this.initializeCharacter(characterEra, generateOccupation(), true, generateBackground);
+    //}
 
     // public CoCCharacter(CharacterEra characterEra, String name, Sex sex, int age, String occupation, boolean generateBackground) {
     //     super(name, sex, age);

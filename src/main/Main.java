@@ -88,7 +88,13 @@ public class Main implements ActionListener {
 
 
         if (!(ageFieldValue.isBlank() || ageField == null)) {
-            charAge = Integer.parseInt(ageFieldValue);
+            try {
+                charAge = Integer.parseInt(ageFieldValue);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                charAge = 0;
+            }
+            
         }
 
         CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true);
