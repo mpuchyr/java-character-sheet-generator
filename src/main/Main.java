@@ -94,16 +94,6 @@ public class Main implements ActionListener {
         CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true);
         cocCharacterInfo.setText(cocCharacter.toString());
         
-        // if ((charName.isBlank() || charName == null) && randomCharacterGender) {
-        //     CoCCharacter cocCharacter = new CoCCharacter(characterEra, true);
-        //     cocCharacterInfo.setText(cocCharacter.toString());
-        // } else if ((charName.isBlank() || charName == null) && !randomCharacterGender){
-        //     CoCCharacter cocCharacter = new CoCCharacter(characterEra, characterSex, true);
-        //     cocCharacterInfo.setText(cocCharacter.toString());
-        // }else {
-        //     CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, characterSex, true);
-        //     cocCharacterInfo.setText(cocCharacter.toString());
-        // }
 
     }
 
