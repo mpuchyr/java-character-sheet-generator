@@ -114,15 +114,15 @@ public class Main implements ActionListener {
     }
 
     private static void displayCharacterGenderOptions() {
-        maleButton = new JRadioButton("Male");
-        maleButton.setBounds(10, 75, 75, 25);
-        maleButton.addActionListener(new ActionListener() {
+        anyGenderButton = new JRadioButton("Any");
+        anyGenderButton.setSelected(true);
+        anyGenderButton.setBounds(10,75, 75, 25);
+        anyGenderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                characterSex = Sex.MALE;
-                randomCharacterGender = false;
+                randomCharacterGender = true;
             }
         });
-
+        
         femaleButton = new JRadioButton("Female");
         femaleButton.setBounds(10, 100, 75, 25);
         femaleButton.addActionListener(new ActionListener() {
@@ -132,14 +132,15 @@ public class Main implements ActionListener {
             }
         });
 
-        anyGenderButton = new JRadioButton("Any");
-        anyGenderButton.setSelected(true);
-        anyGenderButton.setBounds(10, 125, 75, 25);
-        anyGenderButton.addActionListener(new ActionListener() {
+        maleButton = new JRadioButton("Male");
+        maleButton.setBounds(10, 125, 75, 25);
+        maleButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                randomCharacterGender = true;
+                characterSex = Sex.MALE;
+                randomCharacterGender = false;
             }
         });
+
 
         ButtonGroup group = new ButtonGroup();
         group.add(maleButton);
