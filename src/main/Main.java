@@ -71,7 +71,7 @@ public class Main implements ActionListener {
 
         cocCharacterInfo = new JTextArea("");
         scroll = new JScrollPane(cocCharacterInfo);
-        scroll.setBounds(300, 50, 500, 300);
+        scroll.setBounds(300, 50, 500, 500);
         panel.add(scroll);
 
 
@@ -99,6 +99,7 @@ public class Main implements ActionListener {
 
         CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true);
         cocCharacterInfo.setText(cocCharacter.toString());
+        cocCharacterInfo.setCaretPosition(0);
         
 
     }
