@@ -10,21 +10,16 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.event.SwingPropertyChangeSupport;
-
-import org.junit.platform.engine.support.config.PrefixedConfigurationParameters;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
-import java.time.chrono.Era;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.main.models.characters.CoCCharacter;
 import src.main.models.characters.CoCCharacter.CharacterEra;
 import src.main.models.characters.GenericCharacter.Sex;
-import src.main.models.helpers.Helpers;
 
 
 public class Main implements ActionListener {
