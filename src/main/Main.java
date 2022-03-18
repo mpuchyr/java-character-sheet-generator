@@ -201,7 +201,7 @@ public class Main implements ActionListener {
                 professionOptionsArray[i] = professionOptions.get(i);
             }
             professionChoice = new JComboBox<>(professionOptionsArray);
-            professionChoice.setBounds(10, 225, 150, 25);
+            professionChoice.setBounds(10, 235, 150, 25);
             panel.add(professionChoice);
             professionChoice.setSelectedIndex(0);
             scan.close();
