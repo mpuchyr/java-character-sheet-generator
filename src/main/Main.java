@@ -40,6 +40,7 @@ public class Main implements ActionListener {
     public static CharacterEra characterEra = CharacterEra.NINETEENTWENTIES;
     public static JTextField ageField;
     public static JComboBox<String> professionChoice;
+    public static ArrayList<Object> characterList = new ArrayList<Object>();
 
     public static void main(String[] args) {
 
@@ -95,8 +96,10 @@ public class Main implements ActionListener {
         CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true);
         cocCharacterInfo.setText(cocCharacter.toString());
         cocCharacterInfo.setCaretPosition(0);
-        
 
+        characterList.add(cocCharacter);
+        showPreviousCharacters();
+    
     }
 
     private static void displayCharacterNameGroup() {
@@ -115,6 +118,7 @@ public class Main implements ActionListener {
         anyGenderButton.setBounds(10,75, 75, 25);
         anyGenderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                characterSex = Sex.ANY;
                 randomCharacterGender = true;
             }
         });
@@ -211,4 +215,31 @@ public class Main implements ActionListener {
 
         
     }
+
+    private static void showPreviousCharacters() {
+        int xPosition = 850;
+        int yPosition = 50;
+
+        for (int i = 0; i < characterList.size(); i++) {
+            CoCCharacter character = (CoCCharacter)characterList.get(i);
+            JButton characterButton = new JButton(character.getName());
+
+            characterButton.setBounds(xPosition, yPosition, 200, 25);
+
+            final int x = i;
+            characterButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    cocCharacterInfo.setText(characterList.get(x).toString());
+                    cocCharacterInfo.setCaretPosition(0);
+                }
+            });
+
+            panel.add(characterButton);
+            yPosition += 30;
+        }
+
+        panel.revalidate();
+        panel.repaint();
+    }
+
 }
