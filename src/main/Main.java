@@ -20,6 +20,8 @@ import java.util.Scanner;
 import src.main.models.characters.CoCCharacter;
 import src.main.models.characters.CoCCharacter.CharacterEra;
 import src.main.models.characters.GenericCharacter.Sex;
+import src.main.models.helpers.CharacterExporter;
+import src.main.models.helpers.CharacterExporter.*;
 
 
 public class Main implements ActionListener {
@@ -69,6 +71,15 @@ public class Main implements ActionListener {
         scroll = new JScrollPane(cocCharacterInfo);
         scroll.setBounds(300, 50, 500, 500);
         panel.add(scroll);
+
+        JButton saveCharacterButton = new JButton("Save Characters");
+        saveCharacterButton.setBounds(10, 450, 100, 25);
+        saveCharacterButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CharacterExporter.exportCharacters(characterList);
+            }
+        });
+        panel.add(saveCharacterButton);
 
 
         frame.setVisible(true);
