@@ -3,6 +3,8 @@ package src.main.models.helpers;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import src.main.models.characters.CoCCharacter;
@@ -10,10 +12,12 @@ import src.main.models.characters.CoCCharacter;
 public class CharacterExporter {
     
     public static void exportCharacters(ArrayList<Object> charactersToExport) {
-        LocalDate currentDate = LocalDate.now();
+        LocalDateTime current = LocalDateTime.now();
+        DateTimeFormatter myDateFormat = DateTimeFormatter.ofPattern("yyyy-dd-MM-HHmmss");
+        String formattedDate = myDateFormat.format(current);
         if (charactersToExport.size() > 0) {
             try {
-                FileWriter myWriter = new FileWriter("Characters-" + currentDate + ".txt");
+                FileWriter myWriter = new FileWriter("Characters-" + formattedDate + ".txt");
                 for (int i = 0; i < charactersToExport.size(); i++) {
                     myWriter.write(charactersToExport.get(i).toString());
                     myWriter.write("\n\n\n\n");
