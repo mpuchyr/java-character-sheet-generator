@@ -11,18 +11,23 @@ public class CharacterExporter {
     
     public static void exportCharacters(ArrayList<Object> charactersToExport) {
         LocalDate currentDate = LocalDate.now();
-        try {
-            FileWriter myWriter = new FileWriter("Characters-" + currentDate + ".txt");
-            for (int i = 0; i < charactersToExport.size(); i++) {
-                myWriter.write(charactersToExport.get(i).toString());
-                myWriter.write("\n\n\n\n");
+        if (charactersToExport.size() > 0) {
+            try {
+                FileWriter myWriter = new FileWriter("Characters-" + currentDate + ".txt");
+                for (int i = 0; i < charactersToExport.size(); i++) {
+                    myWriter.write(charactersToExport.get(i).toString());
+                    myWriter.write("\n\n\n\n");
+                }
+                myWriter.close();
+                System.out.println("Successfully wrote to file");
+            } catch (IOException e) {
+                System.out.println("An error occurred");
+                e.printStackTrace();
             }
-            myWriter.close();
-            System.out.println("Successfully wrote to file");
-        } catch (IOException e) {
-            System.out.println("An error occurred");
-            e.printStackTrace();
+        } else {
+            System.out.println("There are no characters to export");
         }
+
         
     }
 }
