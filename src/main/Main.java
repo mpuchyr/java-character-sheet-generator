@@ -26,6 +26,7 @@ import src.main.models.helpers.CharacterExporter.*;
 
 public class Main implements ActionListener {
 
+    private static JFrame frame;
     private static JPanel panel;
 
     public static JButton generateCoCCharacterButton;
@@ -43,10 +44,11 @@ public class Main implements ActionListener {
     public static JTextField ageField;
     public static JComboBox<String> professionChoice;
     public static ArrayList<Object> characterList = new ArrayList<Object>();
+    public static int componentCount;
 
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         panel = new JPanel();
         
         frame.setSize(1200, 600);
@@ -69,7 +71,7 @@ public class Main implements ActionListener {
 
         cocCharacterInfo = new JTextArea("");
         scroll = new JScrollPane(cocCharacterInfo);
-        scroll.setBounds(300, 50, 500, 500);
+        scroll.setBounds(300, 50, 500, 400);
         panel.add(scroll);
 
         JButton saveCharacterButton = new JButton("Save Characters");
@@ -80,6 +82,28 @@ public class Main implements ActionListener {
             }
         });
         panel.add(saveCharacterButton);
+
+        JButton clearCharactersButton = new JButton("Clear Character List");
+        clearCharactersButton.setBounds(300, 450, 175, 25);
+        // Removes all extra components based on original component count
+        // and clears the characterList
+        clearCharactersButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int count = componentCount - 1;
+                int currentComponentCount = panel.getComponentCount() - 1;
+                for (int i = currentComponentCount; i > count; i--) {
+                    panel.remove(i);
+                    cocCharacterInfo.setText("");
+                    
+                }
+                characterList.clear();
+                panel.repaint();
+                
+                
+            }
+        });
+        panel.add(clearCharactersButton);
+        componentCount = panel.getComponentCount();
 
 
         frame.setVisible(true);
@@ -236,6 +260,7 @@ public class Main implements ActionListener {
             JButton characterButton = new JButton(character.getName());
 
             characterButton.setBounds(xPosition, yPosition, 200, 25);
+            
 
             final int x = i;
             characterButton.addActionListener(new ActionListener() {
