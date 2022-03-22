@@ -252,6 +252,12 @@ public class Main implements ActionListener {
     }
 
     private static void showPreviousCharacters() {
+        int count = componentCount - 1;
+        int currentComponentCount = panel.getComponentCount() - 1;
+        for (int i = currentComponentCount; i > count; i--) {
+            panel.remove(i);
+        }
+        
         int xPosition = 850;
         int yPosition = 50;
 
