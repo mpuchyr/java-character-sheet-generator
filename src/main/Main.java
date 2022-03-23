@@ -21,7 +21,6 @@ import src.main.models.characters.CoCCharacter;
 import src.main.models.characters.CoCCharacter.CharacterEra;
 import src.main.models.characters.GenericCharacter.Sex;
 import src.main.models.helpers.CharacterExporter;
-import src.main.models.helpers.CharacterExporter.*;
 
 
 public class Main implements ActionListener {
