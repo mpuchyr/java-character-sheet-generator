@@ -1,5 +1,7 @@
 package src.main;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -101,7 +103,9 @@ public class Main implements ActionListener {
             }
         });
 
+
         prevCharPanel = new JPanel();
+        prevCharPanel.setLayout(new BoxLayout(prevCharPanel, BoxLayout.Y_AXIS));
         previousCharacterScroll = new JScrollPane(prevCharPanel);
         previousCharacterScroll.setBounds(850, 50, 210, 400);
         panel.add(previousCharacterScroll);
@@ -259,11 +263,6 @@ public class Main implements ActionListener {
     }
 
     private static void showPreviousCharacters() {
-        int count = componentCount - 1;
-        int currentComponentCount = panel.getComponentCount() - 1;
-        for (int i = currentComponentCount; i > count; i--) {
-            panel.remove(i);
-        }
         
         // int xPosition = 850;
         // int yPosition = 50;
@@ -289,6 +288,8 @@ public class Main implements ActionListener {
             yPosition += 30;
         }
 
+        prevCharPanel.revalidate();
+        prevCharPanel.repaint();
         panel.revalidate();
         panel.repaint();
     }
