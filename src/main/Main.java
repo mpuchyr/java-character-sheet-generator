@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import org.intellij.lang.annotations.JdkConstants.FlowLayoutAlignment;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -44,6 +46,8 @@ public class Main implements ActionListener {
     public static JComboBox<String> professionChoice;
     public static ArrayList<Object> characterList = new ArrayList<Object>();
     public static int componentCount;
+    public static JPanel prevCharPanel;
+    public static JScrollPane previousCharacterScroll;
 
     public static void main(String[] args) {
 
@@ -88,21 +92,24 @@ public class Main implements ActionListener {
         // and clears the characterList
         clearCharactersButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int count = componentCount - 1;
-                int currentComponentCount = panel.getComponentCount() - 1;
-                for (int i = currentComponentCount; i > count; i--) {
-                    panel.remove(i);
-                    cocCharacterInfo.setText("");
-                    
-                }
                 characterList.clear();
+                prevCharPanel.removeAll();
+                cocCharacterInfo.setText("");
                 panel.repaint();
                 
                 
             }
         });
+
+        prevCharPanel = new JPanel();
+        previousCharacterScroll = new JScrollPane(prevCharPanel);
+        previousCharacterScroll.setBounds(850, 50, 210, 400);
+        panel.add(previousCharacterScroll);
+
         panel.add(clearCharactersButton);
         componentCount = panel.getComponentCount();
+
+
 
 
         frame.setVisible(true);
@@ -132,6 +139,7 @@ public class Main implements ActionListener {
         cocCharacterInfo.setCaretPosition(0);
 
         characterList.add(cocCharacter);
+        prevCharPanel.removeAll();
         showPreviousCharacters();
     
     }
@@ -257,8 +265,10 @@ public class Main implements ActionListener {
             panel.remove(i);
         }
         
-        int xPosition = 850;
-        int yPosition = 50;
+        // int xPosition = 850;
+        // int yPosition = 50;
+        int xPosition = 0;
+        int yPosition = 0;
 
         for (int i = 0; i < characterList.size(); i++) {
             CoCCharacter character = (CoCCharacter)characterList.get(i);
@@ -275,7 +285,7 @@ public class Main implements ActionListener {
                 }
             });
 
-            panel.add(characterButton);
+            prevCharPanel.add(characterButton);
             yPosition += 30;
         }
 
