@@ -1,6 +1,5 @@
 package src.main;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,8 +11,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
-import org.intellij.lang.annotations.JdkConstants.FlowLayoutAlignment;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
