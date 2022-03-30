@@ -26,9 +26,17 @@ public class CoCCharacter extends GenericCharacter {
     private String era;
     private int personalInterestPoints;
     private String background;
+    private int skillLimit;
 
-    public CoCCharacter (CharacterEra characterEra, String name, int age, Sex sex, String occupation, boolean generateAllSkills, boolean generateBackground) {
+    public CoCCharacter (
+            CharacterEra characterEra, String name, int age, Sex sex, String occupation, 
+            boolean generateAllSkills, boolean generateBackground, Integer skillLimit) {
         super(name, sex, age);
+        if (skillLimit <= 0 || skillLimit == null ) {
+            this.skillLimit = 90;
+        } else {
+            this.skillLimit = skillLimit;
+        }
         this.determineEra(characterEra);
         if (occupation == null || occupation.isBlank() || occupation == "none") {
             this.initializeCharacter(characterEra, generateOccupation(), generateAllSkills, generateBackground);
