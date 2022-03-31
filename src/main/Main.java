@@ -135,7 +135,7 @@ public class Main implements ActionListener {
             
         }
 
-        CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true);
+        CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true, 0);
         cocCharacterInfo.setText(cocCharacter.toString());
         cocCharacterInfo.setCaretPosition(0);
 

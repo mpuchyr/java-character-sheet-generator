@@ -32,7 +32,7 @@ public class CoCCharacter extends GenericCharacter {
             CharacterEra characterEra, String name, int age, Sex sex, String occupation, 
             boolean generateAllSkills, boolean generateBackground, Integer skillLimit) {
         super(name, sex, age);
-        if (skillLimit <= 0 || skillLimit == null ) {
+        if (skillLimit <= 0) {
             this.skillLimit = 90;
         } else {
             this.skillLimit = skillLimit;
@@ -392,12 +392,12 @@ public class CoCCharacter extends GenericCharacter {
                     skillNum = this.characterSkills.get(replacementSkill);
                     skill = replacementSkill;
                 }
-                if (skillNum + mod < 90) {
+                if (skillNum + mod < this.skillLimit) {
                     this.characterSkills.put(skill, skillNum + mod);
                     total -= mod;
                 } else {
-                    int deduction = 90 - this.characterSkills.get(skill);
-                    this.characterSkills.put(skill, 90);
+                    int deduction = this.skillLimit - this.characterSkills.get(skill);
+                    this.characterSkills.put(skill, this.skillLimit);
                     total -= deduction;
                 }
             }
