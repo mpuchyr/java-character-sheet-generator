@@ -32,8 +32,8 @@ public class CoCCharacter extends GenericCharacter {
             CharacterEra characterEra, String name, int age, Sex sex, String occupation, 
             boolean generateAllSkills, boolean generateBackground, Integer skillLimit) {
         super(name, sex, age);
-        if (skillLimit <= 0) {
-            this.skillLimit = 90;
+        if (skillLimit <= 50) {
+            this.skillLimit = 50;
         } else {
             this.skillLimit = skillLimit;
         }

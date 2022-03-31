@@ -47,6 +47,7 @@ public class Main implements ActionListener {
     public static int componentCount;
     public static JPanel prevCharPanel;
     public static JScrollPane previousCharacterScroll;
+    public static JTextField skillLimitField;
 
     public static void main(String[] args) {
 
@@ -70,6 +71,7 @@ public class Main implements ActionListener {
         displayCharacterEraOptions();
         displayCharacterAgeSelection();
         displayProfessionOptions();
+        displaySkillLimitEntry();
 
         cocCharacterInfo = new JTextArea("");
         scroll = new JScrollPane(cocCharacterInfo);
@@ -121,7 +123,9 @@ public class Main implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String charName = nameField.getText();
         String ageFieldValue = ageField.getText();
+        String skillLimitValue = skillLimitField.getText();
         int charAge = 0;
+        int skillLimit = 0;
         String chosenProfession = (String)professionChoice.getSelectedItem();
 
 
@@ -131,11 +135,20 @@ public class Main implements ActionListener {
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 charAge = 0;
-            }
-            
+            }  
         }
 
-        CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true, 0);
+        if (!(skillLimitValue.isBlank() || skillLimitValue == null)) {
+            try {
+                skillLimit = Integer.parseInt(skillLimitValue);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                skillLimit = 0;
+            }
+        }
+
+
+        CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true, skillLimit);
         cocCharacterInfo.setText(cocCharacter.toString());
         cocCharacterInfo.setCaretPosition(0);
 
@@ -291,4 +304,13 @@ public class Main implements ActionListener {
         panel.repaint();
     }
 
+    private static void displaySkillLimitEntry() {
+        JLabel skillLimitLabel = new JLabel("Skill Limit");
+        skillLimitLabel.setBounds(10, 270, 150, 25);
+        panel.add(skillLimitLabel);
+
+        skillLimitField = new JTextField();
+        skillLimitField.setBounds(75, 270, 50, 25);
+        panel.add(skillLimitField);
+    }
 }
