@@ -408,7 +408,7 @@ public class CoCCharacter extends GenericCharacter {
 
     // Checks that a skill is not Cthulhu Mythos
     protected boolean skillIsValid(String skill) {
-        if (skill.equals("Cthulhu Mythos")) {
+        if (skill.equals("Cthulhu Mythos") || skill.equals("Credit Rating")) {
             return false;
         }
         return true;
