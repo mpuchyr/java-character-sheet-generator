@@ -12,11 +12,17 @@ public class CoCOccupations {
     private int creditMin;
     private int creditMax;
     private int skillPoints;
+    private int skillLimit;
 
 
-    public CoCOccupations(String name, ConcurrentHashMap<String, Integer> characterStats, ConcurrentHashMap<String, Integer> characterSkills) {
+    public CoCOccupations(String name, ConcurrentHashMap<String, Integer> characterStats, ConcurrentHashMap<String, Integer> characterSkills, int skillLimit) {
         this.name = name;
         this.characterSkills = characterSkills;
+        if (skillLimit <= 50) {
+            this.skillLimit = 50;
+        } else {
+            this.skillLimit = skillLimit;
+        }
         switch (name) {
             case "Antiquarian":
                 this.creditMin = 30;
@@ -367,12 +373,12 @@ public class CoCOccupations {
             this.characterSkills.put(skill, 1);
         }
         int skillPoints = this.characterSkills.get(skill);
-        if (skillPoints + pointsToAdd <= 90) {
+        if (skillPoints + pointsToAdd <= this.skillLimit) {
             this.characterSkills.put(skill, skillPoints + pointsToAdd);
             return totalPoints - pointsToAdd;
-        } else if (skillPoints + pointsToAdd > 90)  {
-            this.characterSkills.put(skill, 90);
-            int deduction = 90 - this.characterSkills.get(skill);
+        } else if (skillPoints + pointsToAdd > this.skillLimit)  {
+            this.characterSkills.put(skill, this.skillLimit);
+            int deduction = this.skillLimit - this.characterSkills.get(skill);
             return totalPoints - deduction;
         }
         return totalPoints;

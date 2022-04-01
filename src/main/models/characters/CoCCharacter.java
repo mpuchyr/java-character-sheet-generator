@@ -27,16 +27,18 @@ public class CoCCharacter extends GenericCharacter {
     private int personalInterestPoints;
     private String background;
     private int skillLimit;
+    private int occupationSkillLimit;
 
     public CoCCharacter (
             CharacterEra characterEra, String name, int age, Sex sex, String occupation, 
-            boolean generateAllSkills, boolean generateBackground, Integer skillLimit) {
+            boolean generateAllSkills, boolean generateBackground, Integer skillLimit, int occupationSkillLimit) {
         super(name, sex, age);
         if (skillLimit <= 50) {
             this.skillLimit = 50;
         } else {
             this.skillLimit = skillLimit;
         }
+        this.occupationSkillLimit = occupationSkillLimit;
         this.determineEra(characterEra);
         if (occupation == null || occupation.isBlank() || occupation == "none") {
             this.initializeCharacter(characterEra, generateOccupation(), generateAllSkills, generateBackground);
@@ -339,7 +341,7 @@ public class CoCCharacter extends GenericCharacter {
 
     // Uses CoCOccupations to generate a character's occupation skills
     private void generateOccupationSkills() {
-        CoCOccupations occupation = new CoCOccupations(this.characterInfo.get("Occupation"), this.characterStats, this.characterSkills);
+        CoCOccupations occupation = new CoCOccupations(this.characterInfo.get("Occupation"), this.characterStats, this.characterSkills, this.occupationSkillLimit);
         this.characterSkills = occupation.getCharacterSkills();
         
     }
