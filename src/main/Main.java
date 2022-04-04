@@ -48,6 +48,7 @@ public class Main implements ActionListener {
     public static JPanel prevCharPanel;
     public static JScrollPane previousCharacterScroll;
     public static JTextField skillLimitField;
+    public static JTextField occupationSkillLimitField;
 
     public static void main(String[] args) {
 
@@ -124,8 +125,10 @@ public class Main implements ActionListener {
         String charName = nameField.getText();
         String ageFieldValue = ageField.getText();
         String skillLimitValue = skillLimitField.getText();
+        String occupationSkillLimitValue = occupationSkillLimitField.getText();
         int charAge = 0;
         int skillLimit = 0;
+        int occupationalSkillLimit = 0;
         String chosenProfession = (String)professionChoice.getSelectedItem();
 
 
@@ -147,8 +150,17 @@ public class Main implements ActionListener {
             }
         }
 
+        if (!(occupationSkillLimitValue.isBlank() || occupationSkillLimitValue == null)) {
+            try {
+                occupationalSkillLimit = Integer.parseInt(occupationSkillLimitValue);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                occupationalSkillLimit = 0;
+            }
+        }
 
-        CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true, skillLimit, 90);
+
+        CoCCharacter cocCharacter = new CoCCharacter(characterEra, charName, charAge, characterSex, chosenProfession, true, true, skillLimit, occupationalSkillLimit);
         cocCharacterInfo.setText(cocCharacter.toString());
         cocCharacterInfo.setCaretPosition(0);
 
@@ -312,5 +324,14 @@ public class Main implements ActionListener {
         skillLimitField = new JTextField();
         skillLimitField.setBounds(75, 270, 50, 25);
         panel.add(skillLimitField);
+
+        JLabel occupationalLimitLabel = new JLabel("Occupational Skill Limit");
+        occupationalLimitLabel.setBounds(10, 300, 200, 25);
+        panel.add(occupationalLimitLabel);
+
+        occupationSkillLimitField = new JTextField();
+        occupationSkillLimitField.setBounds(150, 300, 50, 25);
+        panel.add(occupationSkillLimitField);
+
     }
 }
