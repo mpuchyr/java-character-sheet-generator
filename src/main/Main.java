@@ -286,8 +286,6 @@ public class Main implements ActionListener {
 
     private static void showPreviousCharacters() {
         
-        // int xPosition = 850;
-        // int yPosition = 50;
         int xPosition = 0;
         int yPosition = 0;
 

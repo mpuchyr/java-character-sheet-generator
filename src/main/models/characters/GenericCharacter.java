@@ -87,13 +87,11 @@ public abstract class GenericCharacter {
             this.sex = sexAsString(sex);
         }
         if (name == null || name.isBlank()) {
-            // throw new IllegalArgumentException("Name cannot be blank/null");
             this.name = this.generateName(this.sex);
         } else {
             this.name = name;
         }
         if (age <= 0 || age == null) {
-            // throw new IllegalArgumentException("Age must be greater than 0");
             this.age = this.generateAge();
         } else {
             this.age = age;

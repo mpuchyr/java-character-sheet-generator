@@ -318,10 +318,6 @@ public class CoCOccupations {
     }
 
     private void generateCreditRating() {
-        // Random r = new Random();
-        
-        // int randomNum = r.nextInt((this.creditMax - this.creditMin) + 1) + this.creditMin;
-        // this.characterSkills.put("Credit Rating", randomNum);
         int randomNum = (int)(Math.random() * this.creditMax) + 1;
         while (randomNum < this.creditMin) {
             randomNum = (int)(Math.random() * this.creditMax) + 1;
