@@ -3,6 +3,7 @@ package src.main;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,6 +50,7 @@ public class Main implements ActionListener {
     public static JScrollPane previousCharacterScroll;
     public static JTextField skillLimitField;
     public static JTextField occupationSkillLimitField;
+    public static JCheckBox generateBackground;
 
     public static void main(String[] args) {
 
@@ -73,6 +75,7 @@ public class Main implements ActionListener {
         displayCharacterAgeSelection();
         displayProfessionOptions();
         displaySkillLimitEntry();
+        displayGenerateBackgroundCheckbox();
 
         cocCharacterInfo = new JTextArea("");
         scroll = new JScrollPane(cocCharacterInfo);
@@ -331,5 +334,11 @@ public class Main implements ActionListener {
         occupationSkillLimitField.setBounds(150, 300, 50, 25);
         panel.add(occupationSkillLimitField);
 
+    }
+
+    private static void displayGenerateBackgroundCheckbox() {
+        generateBackground = new JCheckBox("Generate Background", true);
+        generateBackground.setBounds(10, 325, 200, 50);
+        panel.add(generateBackground);
     }
 }
