@@ -18,8 +18,8 @@ public class CoCOccupations {
     public CoCOccupations(String name, ConcurrentHashMap<String, Integer> characterStats, ConcurrentHashMap<String, Integer> characterSkills, int skillLimit) {
         this.name = name;
         this.characterSkills = characterSkills;
-        if (skillLimit < 60) {
-            this.skillLimit = 60;
+        if (skillLimit < 80) {
+            this.skillLimit = 80;
         } else {
             this.skillLimit = skillLimit;
         }
