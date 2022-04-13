@@ -231,6 +231,8 @@ public class Main implements ActionListener {
         era1920s.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 characterEra = CharacterEra.NINETEENTWENTIES;
+                panel.remove(professionChoice);
+                displayProfessionOptions();
             }
         });
 
@@ -239,6 +241,8 @@ public class Main implements ActionListener {
         eraModern.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 characterEra = CharacterEra.MODERN;
+                panel.remove(professionChoice);
+                displayProfessionOptions();
             }
         });
 
@@ -268,7 +272,14 @@ public class Main implements ActionListener {
             FileInputStream fis = new FileInputStream("src/main/models/data/CoCoccupations.txt");
             Scanner scan = new Scanner(fis);
             while(scan.hasNextLine()) {
-                String line = scan.nextLine();
+                String line;
+                if (era1920s.isSelected() && scan.nextLine() != "Hacker") {
+                    line = scan.nextLine();
+                } else if (eraModern.isSelected()) {
+                    line = scan.nextLine();
+                } else {
+                    continue;
+                }
                 professionOptions.add(line);
             }
             String[] professionOptionsArray = new String[professionOptions.size()];
