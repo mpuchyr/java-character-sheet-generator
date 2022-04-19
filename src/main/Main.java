@@ -124,6 +124,7 @@ public class Main implements ActionListener {
     }
 
     @Override
+    // Creates the character based off of information entered
     public void actionPerformed(ActionEvent e) {
         String charName = nameField.getText();
         String ageFieldValue = ageField.getText();
