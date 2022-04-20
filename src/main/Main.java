@@ -346,11 +346,15 @@ public class Main implements ActionListener {
         occupationSkillLimitField.setBounds(150, 300, 50, 25);
         panel.add(occupationSkillLimitField);
 
+        JLabel occupationalLimitWarning = new JLabel("(Will not be lower than 80)");
+        occupationalLimitWarning.setBounds(10, 320, 300, 25);
+        panel.add(occupationalLimitWarning);
+
     }
 
     private static void displayGenerateBackgroundCheckbox() {
         generateBackground = new JCheckBox("Generate Background", true);
-        generateBackground.setBounds(10, 325, 200, 50);
+        generateBackground.setBounds(10, 350, 200, 50);
         panel.add(generateBackground);
     }
 }
