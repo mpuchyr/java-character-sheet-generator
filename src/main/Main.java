@@ -83,7 +83,7 @@ public class Main implements ActionListener {
         panel.add(scroll);
 
         JButton saveCharacterButton = new JButton("Save Characters");
-        saveCharacterButton.setBounds(10, 450, 100, 25);
+        saveCharacterButton.setBounds(10, 450, 150, 25);
         saveCharacterButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 CharacterExporter.exportCharacters(characterList);
